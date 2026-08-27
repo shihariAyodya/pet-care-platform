@@ -1,0 +1,136 @@
+.lostfound-page {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5efe6;
+  min-height: 100vh;
+}
+
+.lostfound-header {
+  text-align: center;
+  padding: 2.5rem 2rem 1.5rem;
+}
+
+.lostfound-header h2 {
+  color: #4a3626;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.lostfound-header p {
+  color: #7a6a58;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}
+
+.tab-btn {
+  padding: 0.7rem 1.8rem;
+  border-radius: 30px;
+  border: 1px solid #e0d3bd;
+  background-color: #fffaf3;
+  color: #6f4e37;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.tab-btn:hover {
+  background-color: #ecdfc8;
+}
+
+.tab-btn.active {
+  background-color: #8b5e3c;
+  color: white;
+  border-color: #8b5e3c;
+}
+
+.results {
+  padding: 1rem 3rem 3rem;
+  text-align: center;
+}
+
+.results-count {
+  color: #7a6a58;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.results-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.report-card {
+  background: #fffaf3;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  padding: 1.2rem;
+  width: 220px;
+  text-align: left;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.report-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.report-image-placeholder {
+  width: 100%;
+  height: 150px;
+  background-color: #d9c6ac;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.tag-lost {
+  background-color: #f4d4d4;
+  color: #a13c3c;
+}
+
+.tag-found {
+  background-color: #d4ecd4;
+  color: #3c7a3c;
+}
+
+.report-card h4 {
+  color: #4a3626;
+  margin-bottom: 0.3rem;
+}
+
+.report-card p {
+  color: #8a7a68;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.location-tag {
+  color: #6f4e37;
+  font-weight: 500;
+}
+
+.date-tag {
+  color: #a89886;
+  font-size: 0.8rem;
+}
+
+.no-results {
+  color: #8a7a68;
+  padding: 2rem;
+}

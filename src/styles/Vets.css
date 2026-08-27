@@ -1,0 +1,124 @@
+.vets-page {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5efe6;
+  min-height: 100vh;
+}
+
+.vets-header {
+  text-align: center;
+  padding: 2.5rem 2rem 1.5rem;
+}
+
+.vets-header h2 {
+  color: #4a3626;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.vets-header p {
+  color: #7a6a58;
+}
+
+.search-bar-section {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 30px;
+  border: 1px solid #e0d3bd;
+  background-color: #fffaf3;
+  color: #4a3626;
+  font-size: 0.95rem;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #8b5e3c;
+}
+
+.results {
+  padding: 1rem 3rem 3rem;
+  text-align: center;
+}
+
+.results-count {
+  color: #7a6a58;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.vet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.vet-card {
+  background: #fffaf3;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  padding: 1.2rem;
+  display: flex;
+  gap: 1.2rem;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.vet-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.vet-image-placeholder {
+  width: 90px;
+  height: 90px;
+  background-color: #d9c6ac;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.vet-info h4 {
+  color: #4a3626;
+  margin-bottom: 0.2rem;
+  font-size: 1.1rem;
+}
+
+.clinic-name {
+  color: #6f4e37;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.specialty-tag {
+  display: inline-block;
+  background-color: #ecdfc8;
+  color: #4a3626;
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.vet-info p {
+  color: #8a7a68;
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.hours-tag {
+  color: #a89886;
+  font-size: 0.85rem;
+}
+
+.no-results {
+  color: #8a7a68;
+  padding: 2rem;
+}
