@@ -37,7 +37,7 @@ function Home() {
     <div className="home">
       {/* Navbar */}
       <nav className="navbar">
-        <h1 className="logo">🐾 PetCare</h1>
+        <h1 className="logo">🐾 PetCare.lk</h1>
         <div className="nav-links">
           <Link to="/browse">Adopt</Link>
           <Link to="/lost-found">Lost & Found</Link>

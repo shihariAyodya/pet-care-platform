@@ -32,7 +32,7 @@ function Browse() {
   return (
     <div className="browse-page">
       <nav className="navbar">
-        <Link to="/" className="logo">🐾 PetCare</Link>
+        <Link to="/" className="logo">🐾 PetCare.lk</Link>
         <div className="nav-links">
           <Link to="/browse">Adopt</Link>
           <Link to="/lost-found">Lost & Found</Link>
