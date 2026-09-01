@@ -1,7 +1,53 @@
 .vets-page {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Segoe UI', 'Noto Sans Sinhala', sans-serif;
   background-color: #f5efe6;
   min-height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #6f4e37;
+  text-decoration: none;
+}
+
+.nav-links a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: #5a4634;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #6f4e37;
+}
+
+.lang-toggle {
+  background-color: #fffaf3;
+  border: 1px solid #e0d3bd;
+  color: #6f4e37;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-left: 1.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.lang-toggle:hover {
+  background-color: #ecdfc8;
 }
 
 .vets-header {
@@ -121,11 +167,4 @@
 .no-results {
   color: #8a7a68;
   padding: 2rem;
-}
-
-.logo {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #6f4e37;
-  text-decoration: none;
 }

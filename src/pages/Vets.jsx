@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 import "../styles/Vets.css";
 
 const vetList = [
@@ -11,6 +12,7 @@ const vetList = [
 ];
 
 function Vets() {
+  const { language, toggleLanguage, t } = useLanguage();
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredVets = vetList.filter((vet) => {
@@ -27,31 +29,34 @@ function Vets() {
       <nav className="navbar">
         <Link to="/" className="logo">🐾 PetCare.lk</Link>
         <div className="nav-links">
-          <Link to="/browse">Adopt</Link>
-          <Link to="/lost-found">Lost & Found</Link>
-          <Link to="/vets">Vet Directory</Link>
-          <Link to="/articles">Articles</Link>
-          <Link to="/login">Login</Link>
+          <Link to="/browse">{t("nav.adopt")}</Link>
+          <Link to="/lost-found">{t("nav.lostFound")}</Link>
+          <Link to="/vets">{t("nav.vetDirectory")}</Link>
+          <Link to="/articles">{t("nav.articles")}</Link>
+          <Link to="/login">{t("nav.login")}</Link>
+          <button className="lang-toggle" onClick={toggleLanguage}>
+            {language === "en" ? "සිං" : "EN"}
+          </button>
         </div>
       </nav>
 
       <section className="vets-header">
-        <h2>Find a Vet</h2>
-        <p>Search by name, clinic, or location</p>
+        <h2>{t("vets.title")}</h2>
+        <p>{t("vets.subtitle")}</p>
       </section>
 
       <section className="search-bar-section">
         <input
           type="text"
           className="search-input"
-          placeholder="Search vets..."
+          placeholder={t("vets.searchPlaceholder")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </section>
 
       <section className="results">
-        <p className="results-count">{filteredVets.length} vet(s) found</p>
+        <p className="results-count">{filteredVets.length} {t("vets.resultsFound")}</p>
 
         <div className="vet-list">
           {filteredVets.map((vet) => (
@@ -70,7 +75,7 @@ function Vets() {
         </div>
 
         {filteredVets.length === 0 && (
-          <p className="no-results">No vets match your search.</p>
+          <p className="no-results">{t("vets.noResults")}</p>
         )}
       </section>
     </div>

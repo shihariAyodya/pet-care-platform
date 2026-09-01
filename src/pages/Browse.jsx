@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 import "../styles/Browse.css";
 
 const allPets = [
@@ -13,14 +14,15 @@ const allPets = [
   { name: "Daisy", breed: "Persian Cat", age: "Senior", location: "Kandy" },
 ];
 
-const breeds = ["All", ...new Set(allPets.map((pet) => pet.breed))];
-const ages = ["All", "Baby", "Young", "Adult", "Senior"];
-const locations = ["All", ...new Set(allPets.map((pet) => pet.location))];
-
 function Browse() {
+  const { language, toggleLanguage, t } = useLanguage();
   const [breedFilter, setBreedFilter] = useState("All");
   const [ageFilter, setAgeFilter] = useState("All");
   const [locationFilter, setLocationFilter] = useState("All");
+
+  const breeds = ["All", ...new Set(allPets.map((pet) => pet.breed))];
+  const ages = ["All", "Baby", "Young", "Adult", "Senior"];
+  const locations = ["All", ...new Set(allPets.map((pet) => pet.location))];
 
   const filteredPets = allPets.filter((pet) => {
     const matchesBreed = breedFilter === "All" || pet.breed === breedFilter;
@@ -34,50 +36,53 @@ function Browse() {
       <nav className="navbar">
         <Link to="/" className="logo">🐾 PetCare.lk</Link>
         <div className="nav-links">
-          <Link to="/browse">Adopt</Link>
-          <Link to="/lost-found">Lost & Found</Link>
-          <Link to="/vets">Vet Directory</Link>
-          <Link to="/articles">Articles</Link>
-          <Link to="/login">Login</Link>
+          <Link to="/browse">{t("nav.adopt")}</Link>
+          <Link to="/lost-found">{t("nav.lostFound")}</Link>
+          <Link to="/vets">{t("nav.vetDirectory")}</Link>
+          <Link to="/articles">{t("nav.articles")}</Link>
+          <Link to="/login">{t("nav.login")}</Link>
+          <button className="lang-toggle" onClick={toggleLanguage}>
+            {language === "en" ? "සිං" : "EN"}
+          </button>
         </div>
       </nav>
 
       <section className="browse-header">
-        <h2>Find a Pet to Adopt</h2>
-        <p>Use the filters below to narrow down your search</p>
+        <h2>{t("browse.title")}</h2>
+        <p>{t("browse.subtitle")}</p>
       </section>
 
       <section className="filters">
         <div className="filter-group">
-          <label>Breed</label>
+          <label>{t("browse.breed")}</label>
           <select value={breedFilter} onChange={(e) => setBreedFilter(e.target.value)}>
             {breeds.map((breed) => (
-              <option key={breed} value={breed}>{breed}</option>
+              <option key={breed} value={breed}>{breed === "All" ? t("browse.all") : breed}</option>
             ))}
           </select>
         </div>
 
         <div className="filter-group">
-          <label>Age</label>
+          <label>{t("browse.age")}</label>
           <select value={ageFilter} onChange={(e) => setAgeFilter(e.target.value)}>
             {ages.map((age) => (
-              <option key={age} value={age}>{age}</option>
+              <option key={age} value={age}>{age === "All" ? t("browse.all") : age}</option>
             ))}
           </select>
         </div>
 
         <div className="filter-group">
-          <label>Location</label>
+          <label>{t("browse.location")}</label>
           <select value={locationFilter} onChange={(e) => setLocationFilter(e.target.value)}>
             {locations.map((location) => (
-              <option key={location} value={location}>{location}</option>
+              <option key={location} value={location}>{location === "All" ? t("browse.all") : location}</option>
             ))}
           </select>
         </div>
       </section>
 
       <section className="results">
-        <p className="results-count">{filteredPets.length} pet(s) found</p>
+        <p className="results-count">{filteredPets.length} {t("browse.resultsFound")}</p>
 
         <div className="results-grid">
           {filteredPets.map((pet) => (
@@ -91,7 +96,7 @@ function Browse() {
         </div>
 
         {filteredPets.length === 0 && (
-          <p className="no-results">No pets match these filters. Try adjusting your search.</p>
+          <p className="no-results">{t("browse.noResults")}</p>
         )}
       </section>
     </div>

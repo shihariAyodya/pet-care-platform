@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../context/LanguageContext";
 import "../styles/LostFound.css";
 
 const reports = [
@@ -12,6 +13,7 @@ const reports = [
 ];
 
 function LostFound() {
+  const { language, toggleLanguage, t } = useLanguage();
   const [activeTab, setActiveTab] = useState("Lost");
 
   const filteredReports = reports.filter((report) => report.type === activeTab);
@@ -21,17 +23,20 @@ function LostFound() {
       <nav className="navbar">
         <Link to="/" className="logo">🐾 PetCare.lk</Link>
         <div className="nav-links">
-          <Link to="/browse">Adopt</Link>
-          <Link to="/lost-found">Lost & Found</Link>
-          <Link to="/vets">Vet Directory</Link>
-          <Link to="/articles">Articles</Link>
-          <Link to="/login">Login</Link>
+          <Link to="/browse">{t("nav.adopt")}</Link>
+          <Link to="/lost-found">{t("nav.lostFound")}</Link>
+          <Link to="/vets">{t("nav.vetDirectory")}</Link>
+          <Link to="/articles">{t("nav.articles")}</Link>
+          <Link to="/login">{t("nav.login")}</Link>
+          <button className="lang-toggle" onClick={toggleLanguage}>
+            {language === "en" ? "සිං" : "EN"}
+          </button>
         </div>
       </nav>
 
       <section className="lostfound-header">
-        <h2>Lost & Found Pets</h2>
-        <p>Help reunite pets with their families</p>
+        <h2>{t("lostFound.title")}</h2>
+        <p>{t("lostFound.subtitle")}</p>
       </section>
 
       <section className="tabs">
@@ -39,25 +44,25 @@ function LostFound() {
           className={activeTab === "Lost" ? "tab-btn active" : "tab-btn"}
           onClick={() => setActiveTab("Lost")}
         >
-          Lost Pets
+          {t("lostFound.lostTab")}
         </button>
         <button
           className={activeTab === "Found" ? "tab-btn active" : "tab-btn"}
           onClick={() => setActiveTab("Found")}
         >
-          Found Pets
+          {t("lostFound.foundTab")}
         </button>
       </section>
 
       <section className="results">
-        <p className="results-count">{filteredReports.length} report(s)</p>
+        <p className="results-count">{filteredReports.length} {t("lostFound.reports")}</p>
 
         <div className="results-grid">
           {filteredReports.map((report) => (
             <div className="report-card" key={report.id}>
               <div className="report-image-placeholder" />
               <span className={report.type === "Lost" ? "tag tag-lost" : "tag tag-found"}>
-                {report.type}
+                {report.type === "Lost" ? t("lostFound.lostTab") : t("lostFound.foundTab")}
               </span>
               <h4>{report.name}</h4>
               <p>{report.description}</p>
@@ -68,7 +73,7 @@ function LostFound() {
         </div>
 
         {filteredReports.length === 0 && (
-          <p className="no-results">No {activeTab.toLowerCase()} pet reports yet.</p>
+          <p className="no-results">{t("lostFound.noResults")}</p>
         )}
       </section>
     </div>

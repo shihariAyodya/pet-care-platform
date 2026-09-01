@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 import "../styles/Home.css";
 
 const allPets = [
@@ -13,50 +14,52 @@ const allPets = [
 ];
 
 function Home() {
-  const [page, setPage] = useState(0); // 0 = first 3 pets, 1 = next 3 pets
+  const { language, toggleLanguage, t } = useLanguage();
+  const [startIndex, setStartIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPage((prev) => (prev === 0 ? 1 : 0));
-    }, 4000);
-
+      setStartIndex((prev) => (prev + 1) % allPets.length);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
   const goPrev = () => {
-    setPage((prev) => (prev === 0 ? 1 : 0));
+    setStartIndex((prev) => (prev - 1 + allPets.length) % allPets.length);
   };
 
   const goNext = () => {
-    setPage((prev) => (prev === 0 ? 1 : 0));
+    setStartIndex((prev) => (prev + 1) % allPets.length);
   };
 
-  const visiblePets = allPets.slice(page * 3, page * 3 + 3);
+  const visiblePets = [0, 1, 2].map(
+    (offset) => allPets[(startIndex + offset) % allPets.length]
+  );
 
   return (
     <div className="home">
-      {/* Navbar */}
       <nav className="navbar">
         <h1 className="logo">🐾 PetCare.lk</h1>
         <div className="nav-links">
-          <Link to="/browse">Adopt</Link>
-          <Link to="/lost-found">Lost & Found</Link>
-          <Link to="/vets">Vet Directory</Link>
-          <Link to="/articles">Articles</Link>
-          <Link to="/login">Login</Link>
+          <Link to="/browse">{t("nav.adopt")}</Link>
+          <Link to="/lost-found">{t("nav.lostFound")}</Link>
+          <Link to="/vets">{t("nav.vetDirectory")}</Link>
+          <Link to="/articles">{t("nav.articles")}</Link>
+          <Link to="/login">{t("nav.login")}</Link>
+          <button className="lang-toggle" onClick={toggleLanguage}>
+            {language === "en" ? "සිං" : "EN"}
+          </button>
         </div>
       </nav>
 
-      {/* Hero section */}
       <section className="hero">
-        <h2>Find Your New Best Friend</h2>
-        <p>Browse adoptable pets, connect with shelters, and give a pet a loving home.</p>
-        <Link to="/browse" className="cta-button">Browse Pets</Link>
+        <h2>{t("home.heroTitle")}</h2>
+        <p>{t("home.heroText")}</p>
+        <Link to="/browse" className="cta-button">{t("home.browseBtn")}</Link>
       </section>
 
-      {/* Featured pets */}
       <section className="featured">
-        <h3>Featured Pets</h3>
+        <h3>{t("home.featuredPets")}</h3>
         <div className="carousel-row">
           <button className="arrow-btn" onClick={goPrev} aria-label="Previous pets">
             <ChevronLeft size={22} />
@@ -78,17 +81,10 @@ function Home() {
         </div>
       </section>
 
-      {/* Quick links section */}
       <section className="quick-links">
-        <Link to="/lost-found" className="quick-card">
-          🔍 Lost & Found
-        </Link>
-        <Link to="/vets" className="quick-card">
-          🩺 Find a Vet
-        </Link>
-        <Link to="/articles" className="quick-card">
-          📖 Pet Care Tips
-        </Link>
+        <Link to="/lost-found" className="quick-card">🔍 {t("home.lostFoundCard")}</Link>
+        <Link to="/vets" className="quick-card">🩺 {t("home.vetCard")}</Link>
+        <Link to="/articles" className="quick-card">📖 {t("home.articlesCard")}</Link>
       </section>
     </div>
   );
