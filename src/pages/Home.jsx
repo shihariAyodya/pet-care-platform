@@ -92,11 +92,7 @@ function Home() {
         <div className="header-top">
           {/* Logo */}
           <Link to="/" className="brand-logo">
-            <div className="logo-paw">🐾</div>
-            <div className="logo-text">
-              <span className="brand-name">Pet Store</span>
-              <span className="brand-tagline">Happy Pets, Happy Life</span>
-            </div>
+            <img src="/store/logo.png" alt="Site Logo" className="site-logo" />
           </Link>
 
           {/* Search Bar */}
@@ -155,7 +151,7 @@ function Home() {
       <section className="hero-banner">
         <div className="hero-left">
           <div className="hero-title-group">
-            <span className="crown-doodle">👑</span>
+            <span className="crown-doodle"></span>
             <h2>Treat Your Pet <br /><span className="highlight-text">like royalty!</span></h2>
           </div>
           <p className="hero-desc">
@@ -182,20 +178,7 @@ function Home() {
           </Link>
         </div>
 
-        <div className="hero-right">
-          <div className="hero-image-wrapper">
-            <img
-              src="/store/hero_dog.png"
-              alt="Royalty Golden Retriever"
-              className="hero-dog-img"
-            />
-            <div className="discount-badge">
-              <span className="discount-small">UP TO</span>
-              <span className="discount-big">30%</span>
-              <span className="discount-off">OFF</span>
-            </div>
-          </div>
-        </div>
+
       </section>
 
       {/* 4. Shop by Category */}
@@ -342,11 +325,7 @@ function Home() {
         <div className="footer-columns">
           <div className="footer-col brand-col">
             <div className="brand-logo">
-              <div className="logo-paw">🐾</div>
-              <div className="logo-text">
-                <span className="brand-name">Pet Store</span>
-                <span className="brand-tagline">Happy Pets, Happy Life</span>
-              </div>
+              <img src="/store/logo.png" alt="Site Logo" className="site-logo" />
             </div>
             <p className="footer-tagline">Everything your pet needs, all in one place.</p>
             <div className="social-icons">
