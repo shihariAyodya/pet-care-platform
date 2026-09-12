@@ -14,7 +14,12 @@ import {
   ArrowRight,
   Stethoscope,
   Tag,
-  Globe
+  Globe,
+  Flame,
+  MapPin,
+  Dog,
+  Cat,
+  PawPrint
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import "../styles/Home.css";
@@ -68,6 +73,14 @@ const customerFavorites = [
   { id: 4, name: "Coco", breed: "Netherland Dwarf", img: "/store/fav_coco.png", bg: "#fee1e8" }
 ];
 
+const adoptablePets = [
+  { id: 1, name: "Max", species: "Dog", breed: "Labrador", age: "2 Years", location: "Kegalle", match: 94, img: "/store/max_labrador.png", status: "Available" },
+  { id: 2, name: "Luna", species: "Cat", breed: "Persian Cat", age: "1 Year", location: "Colombo", match: 88, img: "/store/luna_persian_cat.png", status: "New" },
+  { id: 3, name: "Milo", species: "Dog", breed: "Beagle", age: "3 Years", location: "Kandy", match: 91, img: "/store/milo_beagle.png", status: "Available" },
+  { id: 4, name: "Bella", species: "Other", breed: "Mixed Breed", age: "8 Months", location: "Galle", match: 97, img: "/store/bella_mixed_breed.png", status: "New" },
+  { id: 5, name: "Charlie", species: "Dog", breed: "Golden Retriever", age: "4 Months", location: "Matara", match: 95, img: "/store/charlie_golden_retriever.png", status: "Available" }
+];
+
 function Home() {
   const { language, toggleLanguage, t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
@@ -77,7 +90,7 @@ function Home() {
       {/* 1. Top Announcement Bar */}
       <div className="announcement-bar">
         <div className="announcement-item">
-          <Truck size={16} /> Free Delivery on orders over $49
+          <Truck size={16} /> Free Delivery on orders over LKR 5000.00
         </div>
         <div className="announcement-item">
           <RotateCcw size={16} /> 30-Day Easy Returns
@@ -179,6 +192,58 @@ function Home() {
         </div>
 
 
+      </section>
+
+      {/* 3.5 Pets Looking for Love */}
+      <section className="pets-adoption-section">
+        <div className="adoption-header">
+          <div className="adoption-header-left">
+            <div className="adoption-title-row">
+              <Flame size={20} className="flame-icon" />
+              <h3>PETS LOOKING FOR LOVE</h3>
+            </div>
+            <h2>Meet your next best friend.</h2>
+            <div className="adoption-filters">
+              <button className="filter-pill active"><Dog size={14} /> Dogs</button>
+              <button className="filter-pill"><Cat size={14} /> Cats</button>
+              <button className="filter-pill"><PawPrint size={14} /> Others</button>
+            </div>
+          </div>
+          <Link to="/adopt" className="view-all-link">View All <ArrowRight size={16} /></Link>
+        </div>
+
+        <div className="adoption-grid">
+          {adoptablePets.map((pet) => (
+            <div key={pet.id} className="adopt-card">
+              <div className="adopt-img-wrapper">
+                <img src={pet.img} alt={pet.name} className="adopt-img" />
+                <button className="adopt-heart-btn" aria-label="Favorite">
+                  <Heart size={12} />
+                </button>
+                <span className={`adopt-status ${pet.status.toLowerCase()}`}>{pet.status}</span>
+              </div>
+              <div className="adopt-info">
+                <div className="adopt-name-row">
+                  <h4>{pet.name}</h4>
+                  {pet.species === "Dog" && <Dog size={16} className="species-icon" />}
+                  {pet.species === "Cat" && <Cat size={16} className="species-icon" />}
+                  {pet.species === "Other" && <PawPrint size={16} className="species-icon" />}
+                </div>
+                <p className="adopt-breed">{pet.breed} • {pet.age}</p>
+                <p className="adopt-location"><MapPin size={14} /> {pet.location}</p>
+                
+                <div className="adopt-match">
+                  <div className="match-text">💚 {pet.match}% Lifestyle Match</div>
+                  <div className="match-bar-bg">
+                    <div className="match-bar-fill" style={{ width: `${pet.match}%` }}></div>
+                  </div>
+                </div>
+                
+                <button className="meet-btn">Meet {pet.name} <ArrowRight size={16} /></button>
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
 
       {/* 4. Shop by Category */}
