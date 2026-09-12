@@ -57,8 +57,148 @@
   object-fit: contain;
 }
 
+<<<<<<< HEAD
+.nav-links a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: #5a4634;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #6f4e37;
+}
+
+.lang-toggle {
+  background-color: #fffaf3;
+  border: 1px solid #e0d3bd;
+  color: #6f4e37;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-left: 1.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.lang-toggle:hover {
+  background-color: #ecdfc8;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(180deg, #e8dcc9 0%, #f5efe6 100%);
+}
+
+.hero h2 {
+  font-size: 2.2rem;
+  color: #4a3626;
+  margin-bottom: 0.8rem;
+}
+
+.hero p {
+  color: #7a6a58;
+  margin-bottom: 1.5rem;
+  white-space: pre-line;
+}
+.cta-button {
+  background-color: #8b5e3c;
+  color: white;
+  padding: 0.8rem 1.8rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cta-button:hover {
+  background-color: #6f4a2e;
+}
+
+.featured {
+  padding: 3rem;
+  text-align: center;
+}
+
+.featured h3 {
+  margin-bottom: 1.5rem;
+  color: #4a3626;
+}
+
+.pet-grid {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pet-card {
+  background: #fffaf3;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  padding: 1.4rem;
+  width: 260px;
+  animation: autoLift 3s ease-in-out infinite;
+}
+
+@keyframes autoLift {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+  }
+  50% {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  }
+}
+
+.pet-image-placeholder {
+  width: 100%;
+  height: 180px;
+  background-color: #d9c6ac;
+  border-radius: 8px;
+  margin-bottom: 0.8rem;
+}
+
+.pet-card h4 {
+  color: #4a3626;
+  margin-bottom: 0.3rem;
+  font-size: 1.15rem;
+}
+
+.pet-card p {
+  color: #8a7a68;
+  font-size: 1rem;
+}
+
+.quick-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 2rem 3rem 3rem;
+  flex-wrap: wrap;
+}
+
+.quick-card {
+  background-color: #ecdfc8;
+  padding: 1.2rem 2rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #4a3626;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.quick-card:hover {
+  background-color: #ddcba9;
+}
+
+.carousel-row {
+=======
 /* Search Bar */
 .search-container {
+>>>>>>> ba69736bd219a85ed09f2d283c7befd34032d514
   display: flex;
   align-items: center;
   background: var(--bg-cream);
