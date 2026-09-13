@@ -24,7 +24,12 @@ import {
   Clock,
   Activity,
   Users,
-  Check
+  Check,
+  LifeBuoy,
+  Scissors,
+  GraduationCap,
+  Car,
+  Store
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import "../styles/Home.css";
@@ -87,8 +92,8 @@ const adoptablePets = [
 ];
 
 function Home() {
-  const { language, toggleLanguage, t } = useLanguage();
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+  const { language, toggleLanguage } = useLanguage();
+  const [selectedCategory] = useState("All Categories");
 
   return (
     <div className="pet-store-page">
@@ -344,6 +349,234 @@ function Home() {
               
               <button className="meet-match-btn">Meet Buddy <ArrowRight size={16} /></button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3.8 What are you looking for Section */}
+      <section className="action-hub-section">
+        <div className="action-hub-header">
+          <h2>What are you looking for?</h2>
+          <p>Whatever your pet needs, start here.</p>
+        </div>
+
+        <div className="action-grid">
+          {/* Main Primary Card - Adopt */}
+          <Link to="/adopt" className="action-card primary-card adopt-theme">
+            <div className="action-bg-wrap">
+              <img src="/store/action_adopt.png" alt="Adopt a pet" className="action-bg-img" />
+            </div>
+            <div className="action-content">
+              <div className="action-icon-badge"><Heart size={24} /></div>
+              <h3>ADOPT A PET</h3>
+              <p>Find your new best friend.</p>
+              <div className="action-cta">Find Pets <ArrowRight size={16} className="arrow" /></div>
+            </div>
+          </Link>
+
+          {/* Secondary Cards Grid */}
+          <div className="secondary-action-grid">
+            <Link to="/foster" className="action-card secondary-card foster-theme">
+              <div className="action-bg-wrap">
+                <img src="/store/action_foster.png" alt="Foster a pet" className="action-bg-img" />
+              </div>
+              <div className="action-content">
+                <div className="action-icon-badge"><HomeIcon size={20} /></div>
+                <h3>FOSTER A PET</h3>
+                <p>Give a pet a safe place to stay.</p>
+                <div className="action-cta">Become a Foster <ArrowRight size={16} className="arrow" /></div>
+              </div>
+            </Link>
+
+            <Link to="/rescue" className="action-card secondary-card rescue-theme">
+              <div className="action-bg-wrap">
+                <img src="/store/action_rescue.png" alt="Rescue an animal" className="action-bg-img" />
+              </div>
+              <div className="action-content">
+                <div className="action-icon-badge"><LifeBuoy size={20} /></div>
+                <h3>RESCUE AN ANIMAL</h3>
+                <p>See an animal in need? Help them get rescued.</p>
+                <div className="action-cta">Report an Animal <ArrowRight size={16} className="arrow" /></div>
+              </div>
+            </Link>
+
+            <Link to="/lost-found" className="action-card secondary-card lost-theme">
+              <div className="action-bg-wrap">
+                <img src="/store/action_lost.png" alt="Find lost pet" className="action-bg-img" />
+              </div>
+              <div className="action-content">
+                <div className="action-icon-badge"><Search size={20} /></div>
+                <h3>FIND MY LOST PET</h3>
+                <p>Help bring your missing friend home.</p>
+                <div className="action-cta">Lost & Found <ArrowRight size={16} className="arrow" /></div>
+              </div>
+            </Link>
+
+            <Link to="/services" className="action-card secondary-card services-theme">
+              <div className="action-bg-wrap">
+                <img src="/store/action_services.png" alt="Pet services" className="action-bg-img" />
+              </div>
+              <div className="action-content">
+                <div className="action-icon-badge"><Stethoscope size={20} /></div>
+                <h3>FIND PET SERVICES</h3>
+                <p>Everything your pet needs, nearby.</p>
+                <div className="action-cta">Explore Services <ArrowRight size={16} className="arrow" /></div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW SERVICE DISCOVERY SECTION */}
+      <section className="service-discovery-section">
+        <div className="discovery-header">
+          <h2>Everything Your Pet Needs</h2>
+          <p>From everyday care to professional services, find trusted pet businesses near you.</p>
+        </div>
+
+        <div className="service-categories-grid">
+          {/* 1. Veterinarians */}
+          <Link to="/vets" className="service-card featured">
+            <div className="service-img-wrapper">
+              <img src="/store/service_vet.png" alt="Veterinarians" className="service-img" />
+              <div className="service-icon-badge"><Stethoscope size={18} /></div>
+            </div>
+            <div className="service-info">
+              <h3>Veterinarians</h3>
+              <p>Keep your pet healthy.</p>
+              <div className="service-cta">Find Vets <ArrowRight size={16} className="arrow" /></div>
+            </div>
+          </Link>
+
+          {/* 2. Grooming */}
+          <Link to="/grooming" className="service-card">
+            <div className="service-img-wrapper">
+              <img src="/store/service_grooming.png" alt="Grooming" className="service-img" />
+              <div className="service-icon-badge"><Scissors size={18} /></div>
+            </div>
+            <div className="service-info">
+              <h3>Grooming</h3>
+              <p>Look good. Feel good.</p>
+              <div className="service-cta">Find Groomers <ArrowRight size={16} className="arrow" /></div>
+            </div>
+          </Link>
+
+          {/* 3. Training */}
+          <Link to="/training" className="service-card">
+            <div className="service-img-wrapper">
+              <img src="/store/service_training.png" alt="Training" className="service-img" />
+              <div className="service-icon-badge"><GraduationCap size={18} /></div>
+            </div>
+            <div className="service-info">
+              <h3>Training</h3>
+              <p>Better habits. Happier pets.</p>
+              <div className="service-cta">Find Trainers <ArrowRight size={16} className="arrow" /></div>
+            </div>
+          </Link>
+
+          {/* 4. Pet Sitting */}
+          <Link to="/sitting" className="service-card">
+            <div className="service-img-wrapper">
+              <img src="/store/service_sitting.png" alt="Pet Sitting" className="service-img" />
+              <div className="service-icon-badge"><HomeIcon size={18} /></div>
+            </div>
+            <div className="service-info">
+              <h3>Pet Sitting</h3>
+              <p>Care when you can't be there.</p>
+              <div className="service-cta">Find Pet Sitters <ArrowRight size={16} className="arrow" /></div>
+            </div>
+          </Link>
+
+          {/* 5. Pet Transport */}
+          <Link to="/transport" className="service-card">
+            <div className="service-img-wrapper">
+              <img src="/store/service_transport.png" alt="Pet Transport" className="service-img" />
+              <div className="service-icon-badge"><Car size={18} /></div>
+            </div>
+            <div className="service-info">
+              <h3>Pet Transport</h3>
+              <p>Safe journeys for pets.</p>
+              <div className="service-cta">Find Transport <ArrowRight size={16} className="arrow" /></div>
+            </div>
+          </Link>
+
+          {/* 6. Pet Shops */}
+          <Link to="/shops" className="service-card">
+            <div className="service-img-wrapper">
+              <img src="/store/service_shop.png" alt="Pet Shops" className="service-img" />
+              <div className="service-icon-badge"><Store size={18} /></div>
+            </div>
+            <div className="service-info">
+              <h3>Pet Shops</h3>
+              <p>Everything they need.</p>
+              <div className="service-cta">Find Pet Shops <ArrowRight size={16} className="arrow" /></div>
+            </div>
+          </Link>
+        </div>
+
+        {/* Popular Services Sub-section */}
+        <div className="popular-services-subsection">
+          <div className="popular-services-header">
+            <h3>Popular Pet Services Near You</h3>
+            <div className="location-control">
+              <MapPin size={16} /> <span>Services Near You</span>
+            </div>
+          </div>
+
+          <div className="business-preview-grid">
+            {/* Business 1 */}
+            <div className="business-preview-card">
+              <div className="business-header">
+                <div className="business-title">Happy Paws Veterinary</div>
+                <div className="business-category">Veterinarian</div>
+              </div>
+              <div className="business-meta">
+                <span className="rating"><Star size={14} className="star-icon" fill="currentColor"/> 4.8</span>
+                <span className="dot">·</span>
+                <span className="distance">2.4 km</span>
+                <span className="dot">·</span>
+                <span className="status open">Open Now</span>
+              </div>
+              <button className="view-profile-btn">View Profile</button>
+            </div>
+
+            {/* Business 2 */}
+            <div className="business-preview-card">
+              <div className="business-header">
+                <div className="business-title">Fluffy Styles Salon</div>
+                <div className="business-category">Grooming</div>
+              </div>
+              <div className="business-meta">
+                <span className="rating"><Star size={14} className="star-icon" fill="currentColor"/> 4.9</span>
+                <span className="dot">·</span>
+                <span className="distance">3.1 km</span>
+                <span className="dot">·</span>
+                <span className="status open">Open Now</span>
+              </div>
+              <button className="view-profile-btn">View Profile</button>
+            </div>
+
+            {/* Business 3 */}
+            <div className="business-preview-card">
+              <div className="business-header">
+                <div className="business-title">Good Boy Academy</div>
+                <div className="business-category">Training</div>
+              </div>
+              <div className="business-meta">
+                <span className="rating"><Star size={14} className="star-icon" fill="currentColor"/> 5.0</span>
+                <span className="dot">·</span>
+                <span className="distance">5.5 km</span>
+                <span className="dot">·</span>
+                <span className="status closed">Closed</span>
+              </div>
+              <button className="view-profile-btn">View Profile</button>
+            </div>
+          </div>
+
+          <div className="explore-all-action">
+            <Link to="/services" className="explore-all-btn">
+              Explore All Services <ArrowRight size={18} />
+            </Link>
           </div>
         </div>
       </section>
