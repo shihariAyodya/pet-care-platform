@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Browse from "./pages/Browse";
 import LostFound from "./pages/LostFound";
 import Vets from "./pages/Vets";
+import SmartMatch from "./pages/SmartMatch";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/browse" element={<Browse />} />
           <Route path="/lost-found" element={<LostFound />} />
           <Route path="/vets" element={<Vets />} />
+          <Route path="/smart-match" element={<SmartMatch />} />
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

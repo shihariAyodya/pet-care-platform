@@ -29,9 +29,12 @@ import {
   Scissors,
   GraduationCap,
   Car,
-  Store
+  Store,
+  Bird,
+  Rabbit
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { adoptablePets } from "../data/pets";
 import "../styles/Home.css";
 
 const categories = [
@@ -83,17 +86,11 @@ const customerFavorites = [
   { id: 4, name: "Coco", breed: "Netherland Dwarf", img: "/store/fav_coco.png", bg: "#fee1e8" }
 ];
 
-const adoptablePets = [
-  { id: 1, name: "Max", species: "Dog", breed: "Labrador", age: "2 Years", location: "Kegalle", match: 94, img: "/store/max_labrador.png", status: "Available" },
-  { id: 2, name: "Luna", species: "Cat", breed: "Persian Cat", age: "1 Year", location: "Colombo", match: 88, img: "/store/luna_persian_cat.png", status: "New" },
-  { id: 3, name: "Milo", species: "Dog", breed: "Beagle", age: "3 Years", location: "Kandy", match: 91, img: "/store/milo_beagle.png", status: "Available" },
-  { id: 4, name: "Bella", species: "Other", breed: "Mixed Breed", age: "8 Months", location: "Galle", match: 97, img: "/store/bella_mixed_breed.png", status: "New" },
-  { id: 5, name: "Charlie", species: "Dog", breed: "Golden Retriever", age: "4 Months", location: "Matara", match: 95, img: "/store/charlie_golden_retriever.png", status: "Available" }
-];
 
 function Home() {
   const { language, toggleLanguage } = useLanguage();
   const [selectedCategory] = useState("All Categories");
+  const [adoptFilter, setAdoptFilter] = useState("Dog");
 
   return (
     <div className="pet-store-page">
@@ -157,17 +154,7 @@ function Home() {
           </div>
         </div>
 
-        {/* Navigation Menu */}
-        <nav className="nav-menu">
-          <Link to="/" className="nav-link active">Home</Link>
-          <div className="nav-link dropdown">Shop <ChevronDown size={14} /></div>
-          <div className="nav-link dropdown">Dogs <ChevronDown size={14} /></div>
-          <div className="nav-link dropdown">Cats <ChevronDown size={14} /></div>
-          <Link to="/vets" className="nav-link">Birds</Link>
-          <Link to="/vets" className="nav-link">Small Pets</Link>
-          <Link to="/articles" className="nav-link">Blog</Link>
-          <Link to="/lost-found" className="nav-link">Contact Us</Link>
-        </nav>
+
       </header>
 
       {/* 3. Hero Section */}
@@ -214,16 +201,25 @@ function Home() {
             </div>
             <h2>Meet your next best friend.</h2>
             <div className="adoption-filters">
-              <button className="filter-pill active"><Dog size={14} /> Dogs</button>
-              <button className="filter-pill"><Cat size={14} /> Cats</button>
-              <button className="filter-pill"><PawPrint size={14} /> Others</button>
+              <button 
+                className={`filter-pill ${adoptFilter === "Dog" ? "active" : ""}`}
+                onClick={() => setAdoptFilter("Dog")}
+              ><Dog size={14} /> Dogs</button>
+              <button 
+                className={`filter-pill ${adoptFilter === "Cat" ? "active" : ""}`}
+                onClick={() => setAdoptFilter("Cat")}
+              ><Cat size={14} /> Cats</button>
+              <button 
+                className={`filter-pill ${adoptFilter === "Other" ? "active" : ""}`}
+                onClick={() => setAdoptFilter("Other")}
+              ><PawPrint size={14} /> Others</button>
             </div>
           </div>
           <Link to="/adopt" className="view-all-link">View All <ArrowRight size={16} /></Link>
         </div>
 
         <div className="adoption-grid">
-          {adoptablePets.map((pet) => (
+          {adoptablePets.filter(pet => adoptFilter === "Other" ? (pet.species !== "Dog" && pet.species !== "Cat") : pet.species === adoptFilter).map((pet) => (
             <div key={pet.id} className="adopt-card">
               <div className="adopt-img-wrapper">
                 <img src={pet.img} alt={pet.name} className="adopt-img" />
@@ -237,6 +233,8 @@ function Home() {
                   <h4>{pet.name}</h4>
                   {pet.species === "Dog" && <Dog size={16} className="species-icon" />}
                   {pet.species === "Cat" && <Cat size={16} className="species-icon" />}
+                  {pet.species === "Bird" && <Bird size={16} className="species-icon" />}
+                  {pet.species === "Rabbit" && <Rabbit size={16} className="species-icon" />}
                   {pet.species === "Other" && <PawPrint size={16} className="species-icon" />}
                 </div>
                 <p className="adopt-breed">{pet.breed} • {pet.age}</p>
@@ -297,7 +295,7 @@ function Home() {
                 </div>
               </div>
             </div>
-            <button className="find-match-btn">Find My Match <ArrowRight size={18} /></button>
+            <Link to="/smart-match" className="find-match-btn" style={{textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Find My Match <ArrowRight size={18} /></Link>
           </div>
           
           {/* Visual Connector */}

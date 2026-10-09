@@ -27,7 +27,9 @@ function Vets() {
   return (
     <div className="vets-page">
       <nav className="navbar">
-        <Link to="/" className="logo">🐾 PetCare.lk</Link>
+        <Link to="/" className="brand-logo">
+          <img src="/store/logo.png" alt="Site Logo" className="site-logo" />
+        </Link>
         <div className="nav-links">
           <Link to="/browse">{t("nav.adopt")}</Link>
           <Link to="/lost-found">{t("nav.lostFound")}</Link>
