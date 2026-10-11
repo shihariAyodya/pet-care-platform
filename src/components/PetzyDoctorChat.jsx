@@ -158,23 +158,81 @@ export default function PetzyDoctorChat() {
       setMessages((prev) => [...prev, botMsg]);
       if (!isOpen) setHasUnread(true);
     } catch (err) {
-      console.warn("Could not reach backend:", err);
-      setServerError(true);
+      console.warn("Backend not active, using built-in veterinary engine:", err);
+      setServerError(false);
 
-      // Helpful fallback message when local server isn't active
-      const fallbackReply =
-        `⚠️ **Petzy Doctor server is not reachable at http://localhost:3000**\n\n` +
-        `To connect live to Groq AI:\n` +
-        `1. Add your Groq API key in \`server/.env\` (or configure \`GROQ_API_KEY\`)\n` +
-        `2. In your terminal, run: \`npm run server\`\n\n` +
-        `*Quick Veterinary Note on your question:* Always watch your pet for red flags like breathing issues, continuous vomiting, or sudden weakness, and consult a registered vet clinic immediately for emergency care.`;
+      const q = textToSend.toLowerCase();
+      let fallbackReply = "";
+
+      if (q.includes("toxic") || q.includes("poison") || q.includes("chocolate") || q.includes("onion") || q.includes("grape") || (q.includes("safe") && q.includes("food"))) {
+        fallbackReply =
+          `### ⚠️ Toxic Foods to Keep Away from Pets\n\n` +
+          `**Never feed these to dogs or cats:**\n` +
+          `- **Chocolate & Caffeine:** Toxic to the heart and central nervous system.\n` +
+          `- **Grapes & Raisins:** Can cause sudden, severe acute kidney failure.\n` +
+          `- **Onions, Garlic, & Leeks:** Causes red blood cell destruction (anemia).\n` +
+          `- **Xylitol:** Found in sugar-free gums and peanut butters. Causes rapid hypoglycemia and liver failure.\n` +
+          `- **Cooked Bones:** Splinter easily and cause intestinal blockages or lacerations.\n\n` +
+          `**Safe Healthy Snacks:** Plain cooked chicken (unseasoned), carrots, watermelon (seedless), and pumpkin puree.\n\n` +
+          `*If your pet ingested toxic food, contact an emergency vet immediately!*`;
+      } else if (q.includes("not eat") || q.includes("won't eat") || q.includes("appetite") || q.includes("letharg") || q.includes("weak")) {
+        fallbackReply =
+          `### 🐶 Pet Not Eating / Low Energy Advice\n\n` +
+          `A sudden loss of appetite or low energy requires close monitoring:\n\n` +
+          `**1. Quick At-Home Checks:**\n` +
+          `- **Hydration Test:** Gently pinch the skin behind their neck. If it snaps back quickly, they are hydrated.\n` +
+          `- **Check Gums:** Healthy gums should be moist and pink. If pale or tacky, seek veterinary care.\n` +
+          `- **Temperature:** Normal body temp is 101.0°F – 102.5°F (38.3°C – 39.2°C).\n\n` +
+          `**2. Gentle Encouragements:**\n` +
+          `- Offer boiled chicken breast with white rice, or warm bone broth (no onion/garlic).\n\n` +
+          `**3. When to See a Vet:**\n` +
+          `- Puppies/kittens not eating for **over 12 hours**.\n` +
+          `- Adult pets refusing meals for **more than 24 hours**, or with vomiting/diarrhea. Check our **Vet Directory** to find a clinic nearby.`;
+      } else if (q.includes("ear") || q.includes("scratch") || q.includes("shake") || q.includes("head")) {
+        fallbackReply =
+          `### 🐱 Ear Scratching & Head Shaking Guide\n\n` +
+          `Constant ear scratching usually points to ear canal irritation:\n\n` +
+          `- **Ear Mites (*Otodectes cynotis*):** Very common in kittens/cats, producing dark coffee-ground wax.\n` +
+          `- **Bacterial or Yeast Infection:** Often produces a noticeable odor and redness.\n` +
+          `- **Foreign Objects:** Grass seeds or burrs caught inside the canal.\n\n` +
+          `**Care Advice:**\n` +
+          `1. Do not insert human cotton swabs (Q-tips) into their ear canal.\n` +
+          `2. Gently wipe only the outer ear flap with a damp cotton pad.\n` +
+          `3. Have a veterinarian inspect the ear with an otoscope for targeted drops.`;
+      } else if (q.includes("vaccin") || q.includes("puppy") || q.includes("kitten") || q.includes("shot")) {
+        fallbackReply =
+          `### 💉 Core Puppy & Kitten Vaccination Schedule\n\n` +
+          `- **6–8 Weeks:** 1st DHPP (Dogs) / FVRCP (Cats) + Deworming.\n` +
+          `- **10–12 Weeks:** 2nd Booster DHPP / FVRCP.\n` +
+          `- **14–16 Weeks:** 3rd Booster + **Rabies Vaccine**.\n` +
+          `- **Annual:** Boosters as recommended by your registered vet.\n\n` +
+          `*Keep puppies indoors until 2 weeks after their final 16-week shots to avoid Parvovirus.*`;
+      } else if (q.includes("emergency") || q.includes("red-flag") || q.includes("red flag") || q.includes("urgent")) {
+        fallbackReply =
+          `### 🚨 Critical Red-Flag Emergency Symptoms\n\n` +
+          `Seek immediate emergency veterinary medical care if you observe:\n` +
+          `- **Breathing difficulty / open-mouth panting in cats**\n` +
+          `- **Distended abdomen with unproductive vomiting (GDV/Bloat)**\n` +
+          `- **Straining to urinate with no urine coming out (Urinary Blockage)**\n` +
+          `- **Seizures lasting longer than 2 minutes or repeated seizures**\n` +
+          `- **Ingestion of rat poison, human pills, or lilies (fatal to cats)**\n\n` +
+          `*Use our **Vet Directory** tab to find the closest veterinary hospital.*`;
+      } else {
+        fallbackReply =
+          `### 🩺 Petzy Doctor Veterinary Advice\n\n` +
+          `Here are recommended steps for your pet's wellness:\n\n` +
+          `1. **Monitor Behavior:** Watch closely for any changes in appetite, water consumption, stool, or lethargy.\n` +
+          `2. **Comfort & Rest:** Provide a quiet, warm, and clean space with fresh drinking water available at all times.\n` +
+          `3. **Safety First:** Never administer human painkillers (Paracetamol/Ibuprofen), which are toxic to animals.\n` +
+          `4. **Veterinary Check:** If symptoms persist beyond 24 hours, check our **Vet Directory** to consult a licensed veterinarian.\n\n` +
+          `*Feel free to ask more specific questions about diets, symptoms, or emergency signs!*`;
+      }
 
       const botMsg = {
         id: "bot-" + Date.now(),
         sender: "bot",
         text: fallbackReply,
         time: formatTime(),
-        isWarning: true
       };
 
       setMessages((prev) => [...prev, botMsg]);
