@@ -29,7 +29,12 @@ import {
   Scissors,
   GraduationCap,
   Car,
-  Store
+  Store,
+  Bird,
+  Rabbit,
+  AlertCircle,
+  Bookmark,
+  Filter
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { adoptablePets } from "../data/pets";
