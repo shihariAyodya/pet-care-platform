@@ -29,9 +29,7 @@ import {
   Scissors,
   GraduationCap,
   Car,
-  Store,
-  Bird,
-  Rabbit
+  Store
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { adoptablePets } from "../data/pets";
@@ -575,6 +573,143 @@ function Home() {
             <Link to="/services" className="explore-all-btn">
               Explore All Services <ArrowRight size={18} />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* COMPACT LOST & FOUND SECTION */}
+      <section className="lf-section-wrapper">
+        <div className="lf-compact-banner">
+          <div className="lf-compact-text">
+            <h2>Lost & Found</h2>
+            <p>Every missing pet has someone waiting for them.</p>
+          </div>
+          <div className="lf-compact-actions">
+            <Link to="/report-lost" className="lf-btn lf-btn-lost">
+              <AlertCircle size={18} /> I Lost My Pet
+            </Link>
+            <Link to="/report-found" className="lf-btn lf-btn-found">
+              <Check size={18} /> I Found a Pet
+            </Link>
+          </div>
+        </div>
+
+        <div className="lf-recent-section">
+          <div className="lf-recent-header">
+            <h3>Recently Reported</h3>
+            <p>Pets that need to be found</p>
+          </div>
+          
+          <div className="lf-recent-grid">
+            {/* Pet 1: Max */}
+            <div className="lf-pet-card">
+              <div className="lf-pet-img-wrap">
+                <img src="/store/lf_pet_max.png" alt="Max" className="lf-pet-img" />
+                <div className="lf-pet-badge lost"><AlertCircle size={12} /> LOST</div>
+                <button className="lf-save-btn"><Bookmark size={16} /></button>
+              </div>
+              <div className="lf-pet-info">
+                <div className="lf-pet-name-row">
+                  <h4>Max</h4>
+                  <span className="lf-pet-breed">Labrador</span>
+                </div>
+                <div className="lf-pet-meta">
+                  <span className="lf-pet-loc"><MapPin size={12} /> Kegalle</span>
+                  <span className="lf-pet-time"><Clock size={12} /> 2h ago</span>
+                </div>
+                <Link to="/pet/max" className="lf-pet-cta">View Details <ArrowRight size={14} /></Link>
+              </div>
+            </div>
+
+            {/* Pet 2: Luna */}
+            <div className="lf-pet-card">
+              <div className="lf-pet-img-wrap">
+                <img src="/store/lf_pet_luna.png" alt="Luna" className="lf-pet-img" />
+                <div className="lf-pet-badge found"><Check size={12} /> FOUND</div>
+                <button className="lf-save-btn"><Bookmark size={16} /></button>
+              </div>
+              <div className="lf-pet-info">
+                <div className="lf-pet-name-row">
+                  <h4>Luna</h4>
+                  <span className="lf-pet-breed">Domestic Shorthair</span>
+                </div>
+                <div className="lf-pet-meta">
+                  <span className="lf-pet-loc"><MapPin size={12} /> Colombo</span>
+                  <span className="lf-pet-time"><Clock size={12} /> 5h ago</span>
+                </div>
+                <Link to="/pet/luna" className="lf-pet-cta">View Details <ArrowRight size={14} /></Link>
+              </div>
+            </div>
+
+            {/* Pet 3: Rocky */}
+            <div className="lf-pet-card">
+              <div className="lf-pet-img-wrap">
+                <img src="/store/lf_pet_rocky.png" alt="Rocky" className="lf-pet-img" />
+                <div className="lf-pet-badge lost"><AlertCircle size={12} /> LOST</div>
+                <button className="lf-save-btn"><Bookmark size={16} /></button>
+              </div>
+              <div className="lf-pet-info">
+                <div className="lf-pet-name-row">
+                  <h4>Rocky</h4>
+                  <span className="lf-pet-breed">Mixed Breed</span>
+                </div>
+                <div className="lf-pet-meta">
+                  <span className="lf-pet-loc"><MapPin size={12} /> Kandy</span>
+                  <span className="lf-pet-time"><Clock size={12} /> 1d ago</span>
+                </div>
+                <Link to="/pet/rocky" className="lf-pet-cta">View Details <ArrowRight size={14} /></Link>
+              </div>
+            </div>
+
+            {/* Pet 4: Milo */}
+            <div className="lf-pet-card">
+              <div className="lf-pet-img-wrap">
+                <img src="/store/lf_pet_milo.png" alt="Milo" className="lf-pet-img" />
+                <div className="lf-pet-badge found"><Check size={12} /> FOUND</div>
+                <button className="lf-save-btn"><Bookmark size={16} /></button>
+              </div>
+              <div className="lf-pet-info">
+                <div className="lf-pet-name-row">
+                  <h4>Milo</h4>
+                  <span className="lf-pet-breed">Persian</span>
+                </div>
+                <div className="lf-pet-meta">
+                  <span className="lf-pet-loc"><MapPin size={12} /> Galle</span>
+                  <span className="lf-pet-time"><Clock size={12} /> 2d ago</span>
+                </div>
+                <Link to="/pet/milo" className="lf-pet-cta">View Details <ArrowRight size={14} /></Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="lf-map-section">
+          <div className="lf-map-header">
+            <h3>Lost & Found Near You</h3>
+            <div className="lf-map-controls">
+              <button className="lf-filter-btn active">All</button>
+              <button className="lf-filter-btn lost-filter"><AlertCircle size={14}/> Lost</button>
+              <button className="lf-filter-btn found-filter"><Check size={14}/> Found</button>
+              <button className="lf-filter-btn icon-only"><Filter size={16}/></button>
+            </div>
+          </div>
+          
+          <div className="lf-map-container">
+            {/* Mock Map Background using CSS pattern and styling */}
+            <div className="lf-mock-map">
+              <div className="lf-map-marker lost" style={{ top: '30%', left: '40%' }}>
+                <img src="/store/lf_pet_max.png" alt="Max" />
+              </div>
+              <div className="lf-map-marker found" style={{ top: '60%', left: '70%' }}>
+                <img src="/store/lf_pet_luna.png" alt="Luna" />
+              </div>
+              <div className="lf-map-marker lost" style={{ top: '50%', left: '20%' }}>
+                <img src="/store/lf_pet_rocky.png" alt="Rocky" />
+              </div>
+              <div className="lf-map-marker found" style={{ top: '20%', left: '80%' }}>
+                <img src="/store/lf_pet_milo.png" alt="Milo" />
+              </div>
+            </div>
           </div>
         </div>
       </section>

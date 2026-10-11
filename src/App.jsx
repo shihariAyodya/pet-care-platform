@@ -5,6 +5,7 @@ import Browse from "./pages/Browse";
 import LostFound from "./pages/LostFound";
 import Vets from "./pages/Vets";
 import SmartMatch from "./pages/SmartMatch";
+import PetzyDoctorChat from "./components/PetzyDoctorChat";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/vets" element={<Vets />} />
           <Route path="/smart-match" element={<SmartMatch />} />
         </Routes>
+        <PetzyDoctorChat />
       </BrowserRouter>
     </LanguageProvider>
   );

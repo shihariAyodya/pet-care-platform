@@ -47,6 +47,28 @@ function Vets() {
         <p>{t("vets.subtitle")}</p>
       </section>
 
+      {/* Meet Petzy Doctor AI Spotlight */}
+      <section className="ai-doctor-spotlight-section">
+        <div className="ai-doctor-card">
+          <div className="ai-doctor-icon-wrap">
+            <span className="ai-doctor-emoji">🩺🐾</span>
+          </div>
+          <div className="ai-doctor-content">
+            <div className="ai-doctor-badge">NEW • 24/7 AI CONSULTATION</div>
+            <h3>Need Quick Medical Advice? Meet Petzy Doctor</h3>
+            <p>
+              Ask questions about pet symptoms, first-aid, safe diets, or emergency triage in seconds.
+            </p>
+          </div>
+          <button
+            className="ai-doctor-chat-btn"
+            onClick={() => window.dispatchEvent(new CustomEvent("open-petzy-doctor"))}
+          >
+            Chat with Petzy Doctor ➔
+          </button>
+        </div>
+      </section>
+
       <section className="search-bar-section">
         <input
           type="text"
