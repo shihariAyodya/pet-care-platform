@@ -1,0 +1,64 @@
+.report-lost-page {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: var(--card-bg, #fff);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.page-title {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.page-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted, #555);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.report-form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.report-form input,
+.report-form textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.report-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.photo-upload input {
+  padding: 0;
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--primary, #ff6b6b);
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.2s;
+}
+
+.submit-btn:hover {
+  background: var(--primary-dark, #e05555);
+}

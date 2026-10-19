@@ -1,22 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AlertCircle, Check, MapPin, Clock, ArrowRight } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { lostFoundPets } from "../data/lostFoundPets";
 import "../styles/LostFound.css";
-
-const reports = [
-  { id: 1, type: "Lost", name: "Charlie", description: "Brown Labrador, wearing a red collar", location: "Nugegoda", date: "Aug 20, 2026" },
-  { id: 2, type: "Found", name: "Unknown", description: "Small white cat, very friendly", location: "Maharagama", date: "Aug 22, 2026" },
-  { id: 3, type: "Lost", name: "Simba", description: "Orange tabby cat, left ear notch", location: "Kottawa", date: "Aug 18, 2026" },
-  { id: 4, type: "Found", name: "Unknown", description: "Grey and white puppy, no collar", location: "Colombo", date: "Aug 24, 2026" },
-  { id: 5, type: "Lost", name: "Rusty", description: "German Shepherd mix, limps slightly", location: "Dehiwala", date: "Aug 25, 2026" },
-  { id: 6, type: "Found", name: "Unknown", description: "Black cat with white paws", location: "Nugegoda", date: "Aug 21, 2026" },
-];
 
 function LostFound() {
   const { language, toggleLanguage, t } = useLanguage();
   const [activeTab, setActiveTab] = useState("Lost");
 
-  const filteredReports = reports.filter((report) => report.type === activeTab);
+  const filteredReports = lostFoundPets.filter((pet) => pet.type === activeTab);
 
   return (
     <div className="lostfound-page">
@@ -36,11 +29,23 @@ function LostFound() {
         </div>
       </nav>
 
-      <section className="lostfound-header">
-        <h2>{t("lostFound.title")}</h2>
-        <p>{t("lostFound.subtitle")}</p>
+      {/* Banner with the two report buttons */}
+      <section className="lf-compact-banner">
+        <div className="lf-compact-text">
+          <h2>{t("lostFound.title")}</h2>
+          <p>{t("lostFound.subtitle")}</p>
+        </div>
+        <div className="lf-compact-actions">
+          <Link to="/report-lost" className="lf-btn lf-btn-lost">
+            <AlertCircle size={18} /> I Lost My Pet
+          </Link>
+          <Link to="/report-found" className="lf-btn lf-btn-found">
+            <Check size={18} /> I Found a Pet
+          </Link>
+        </div>
       </section>
 
+      {/* Lost / Found tabs */}
       <section className="tabs">
         <button
           className={activeTab === "Lost" ? "tab-btn active" : "tab-btn"}
@@ -56,20 +61,46 @@ function LostFound() {
         </button>
       </section>
 
+      {/* Results */}
       <section className="results">
-        <p className="results-count">{filteredReports.length} {t("lostFound.reports")}</p>
+        <p className="results-count">
+          {filteredReports.length} {t("lostFound.reports")}
+        </p>
 
-        <div className="results-grid">
-          {filteredReports.map((report) => (
-            <div className="report-card" key={report.id}>
-              <div className="report-image-placeholder" />
-              <span className={report.type === "Lost" ? "tag tag-lost" : "tag tag-found"}>
-                {report.type === "Lost" ? t("lostFound.lostTab") : t("lostFound.foundTab")}
-              </span>
-              <h4>{report.name}</h4>
-              <p>{report.description}</p>
-              <p className="location-tag">📍 {report.location}</p>
-              <p className="date-tag">{report.date}</p>
+        <div className="lf-recent-grid">
+          {filteredReports.map((pet) => (
+            <div className="lf-pet-card" key={pet.id}>
+              <div className="lf-pet-img-wrap">
+                {pet.img && (
+                  <img src={pet.img} alt={pet.name} className="lf-pet-img" />
+                )}
+                <div className={`lf-pet-badge ${pet.type.toLowerCase()}`}>
+                  {pet.type === "Lost" ? (
+                    <AlertCircle size={12} />
+                  ) : (
+                    <Check size={12} />
+                  )}
+                  {pet.type.toUpperCase()}
+                </div>
+              </div>
+
+              <div className="lf-pet-info">
+                <div className="lf-pet-name-row">
+                  <h4>{pet.name}</h4>
+                  <span className="lf-pet-breed">{pet.breed}</span>
+                </div>
+                <div className="lf-pet-meta">
+                  <span className="lf-pet-loc">
+                    <MapPin size={12} /> {pet.location}
+                  </span>
+                  <span className="lf-pet-time">
+                    <Clock size={12} /> {pet.time}
+                  </span>
+                </div>
+                <Link to={`/pet/${pet.id}`} className="lf-pet-cta">
+                  View Details <ArrowRight size={14} />
+                </Link>
+              </div>
             </div>
           ))}
         </div>

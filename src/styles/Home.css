@@ -2397,3 +2397,8 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.lf-title-link {
+  text-decoration: none;
+  color: inherit;
+}
