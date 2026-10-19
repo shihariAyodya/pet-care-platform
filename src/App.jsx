@@ -20,8 +20,9 @@ function App() {
           <Route path="/lost-found" element={<LostFound />} />
           <Route path="/vets" element={<Vets />} />
           <Route path="/smart-match" element={<SmartMatch />} />
-        <Route path="/found-pets" element={<FoundPets />} />
-                <Route path="/report-lost" element={<ReportLost />} />
+          <Route path="/found-pets" element={<FoundPets />} />
+          <Route path="/report-lost" element={<ReportLost />} />
+          <Route path="/report-found" element={<ReportFound />} />
         </Routes>
         <PetzyDoctorChat />
       </BrowserRouter>

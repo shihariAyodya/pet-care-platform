@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { lostFoundPets } from "../data/lostFoundPets";
 import {
   Search,
   User,

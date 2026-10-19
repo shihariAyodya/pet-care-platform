@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import "../styles/ReportLost.css";
-import { AlertCircle, Check } from "lucide-react";
+import { Check } from "lucide-react";
 
 function ReportLost() {
   const { t } = useLanguage();
