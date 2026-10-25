@@ -15,11 +15,17 @@
   gap: 0.5rem;
 }
 
-.logo {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #6f4e37;
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   text-decoration: none;
+}
+
+.site-logo {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav-links a {
@@ -63,6 +69,92 @@
 
 .vets-header p {
   color: #7a6a58;
+}
+
+/* Petzy Doctor AI Banner */
+.ai-doctor-spotlight-section {
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.ai-doctor-card {
+  background: linear-gradient(135deg, #1d4633 0%, #15803d 100%);
+  border-radius: 16px;
+  padding: 1.4rem 1.8rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  box-shadow: 0 10px 25px -5px rgba(21, 128, 61, 0.35);
+  flex-wrap: wrap;
+}
+
+.ai-doctor-icon-wrap {
+  width: 52px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ai-doctor-emoji {
+  font-size: 26px;
+}
+
+.ai-doctor-content {
+  flex: 1;
+  min-width: 220px;
+  text-align: left;
+}
+
+.ai-doctor-badge {
+  display: inline-block;
+  background: rgba(250, 204, 21, 0.25);
+  color: #fde047;
+  border: 1px solid rgba(250, 204, 21, 0.4);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  margin-bottom: 6px;
+}
+
+.ai-doctor-content h3 {
+  color: #ffffff;
+  font-size: 1.15rem;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.ai-doctor-content p {
+  color: #dcfce7;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.ai-doctor-chat-btn {
+  background: #facc15;
+  color: #14532d;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.65rem 1.3rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.ai-doctor-chat-btn:hover {
+  background: #fde047;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.4);
 }
 
 .search-bar-section {

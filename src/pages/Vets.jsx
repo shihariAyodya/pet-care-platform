@@ -27,7 +27,9 @@ function Vets() {
   return (
     <div className="vets-page">
       <nav className="navbar">
-        <Link to="/" className="logo">🐾 PetCare.lk</Link>
+        <Link to="/" className="brand-logo">
+          <img src="/store/logo.png" alt="Site Logo" className="site-logo" />
+        </Link>
         <div className="nav-links">
           <Link to="/browse">{t("nav.adopt")}</Link>
           <Link to="/lost-found">{t("nav.lostFound")}</Link>
@@ -43,6 +45,28 @@ function Vets() {
       <section className="vets-header">
         <h2>{t("vets.title")}</h2>
         <p>{t("vets.subtitle")}</p>
+      </section>
+
+      {/* Meet Petzy Doctor AI Spotlight */}
+      <section className="ai-doctor-spotlight-section">
+        <div className="ai-doctor-card">
+          <div className="ai-doctor-icon-wrap">
+            <span className="ai-doctor-emoji">🩺🐾</span>
+          </div>
+          <div className="ai-doctor-content">
+            <div className="ai-doctor-badge">NEW • 24/7 AI CONSULTATION</div>
+            <h3>Need Quick Medical Advice? Meet Petzy Doctor</h3>
+            <p>
+              Ask questions about pet symptoms, first-aid, safe diets, or emergency triage in seconds.
+            </p>
+          </div>
+          <button
+            className="ai-doctor-chat-btn"
+            onClick={() => window.dispatchEvent(new CustomEvent("open-petzy-doctor"))}
+          >
+            Chat with Petzy Doctor ➔
+          </button>
+        </div>
       </section>
 
       <section className="search-bar-section">

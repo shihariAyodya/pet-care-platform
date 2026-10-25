@@ -46,7 +46,7 @@ const translations = {
   },
   si: {
     nav: {
-      adopt: "දරුකමට ගන්න",
+      adopt: "සුරතල් සතෙකු \n හදාගන්න",
       lostFound: "නැති වූ සහ හමු වූ",
       vetDirectory: "වෙද මාර්ගෝපදේශය",
       articles: "ලිපි",

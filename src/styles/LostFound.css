@@ -15,11 +15,17 @@
   gap: 0.5rem;
 }
 
-.logo {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #6f4e37;
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   text-decoration: none;
+}
+
+.site-logo {
+  height: 45px;
+  width: auto;
+  object-fit: contain;
 }
 
 .nav-links a {

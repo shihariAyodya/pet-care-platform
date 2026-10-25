@@ -3,16 +3,7 @@ import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import "../styles/Browse.css";
 
-const allPets = [
-  { name: "Buddy", breed: "Golden Retriever", age: "Adult", location: "Colombo" },
-  { name: "Luna", breed: "Domestic Cat", age: "Young", location: "Kandy" },
-  { name: "Max", breed: "Beagle", age: "Adult", location: "Galle" },
-  { name: "Milo", breed: "Tabby Cat", age: "Baby", location: "Colombo" },
-  { name: "Bella", breed: "Labrador", age: "Young", location: "Kandy" },
-  { name: "Coco", breed: "Poodle Mix", age: "Senior", location: "Galle" },
-  { name: "Rocky", breed: "German Shepherd", age: "Adult", location: "Colombo" },
-  { name: "Daisy", breed: "Persian Cat", age: "Senior", location: "Kandy" },
-];
+import { adoptablePets } from "../data/pets";
 
 function Browse() {
   const { language, toggleLanguage, t } = useLanguage();
@@ -20,11 +11,11 @@ function Browse() {
   const [ageFilter, setAgeFilter] = useState("All");
   const [locationFilter, setLocationFilter] = useState("All");
 
-  const breeds = ["All", ...new Set(allPets.map((pet) => pet.breed))];
-  const ages = ["All", "Baby", "Young", "Adult", "Senior"];
-  const locations = ["All", ...new Set(allPets.map((pet) => pet.location))];
+  const breeds = ["All", ...new Set(adoptablePets.map((pet) => pet.breed))];
+  const ages = ["All", ...new Set(adoptablePets.map((pet) => pet.age))];
+  const locations = ["All", ...new Set(adoptablePets.map((pet) => pet.location))];
 
-  const filteredPets = allPets.filter((pet) => {
+  const filteredPets = adoptablePets.filter((pet) => {
     const matchesBreed = breedFilter === "All" || pet.breed === breedFilter;
     const matchesAge = ageFilter === "All" || pet.age === ageFilter;
     const matchesLocation = locationFilter === "All" || pet.location === locationFilter;
@@ -34,7 +25,9 @@ function Browse() {
   return (
     <div className="browse-page">
       <nav className="navbar">
-        <Link to="/" className="logo">🐾 PetCare.lk</Link>
+        <Link to="/" className="brand-logo">
+          <img src="/store/logo.png" alt="Site Logo" className="site-logo" />
+        </Link>
         <div className="nav-links">
           <Link to="/browse">{t("nav.adopt")}</Link>
           <Link to="/lost-found">{t("nav.lostFound")}</Link>
@@ -86,10 +79,13 @@ function Browse() {
 
         <div className="results-grid">
           {filteredPets.map((pet) => (
-            <div className="pet-card" key={pet.name}>
-              <div className="pet-image-placeholder" />
+            <div className="pet-card" key={pet.id}>
+              <div className="pet-image-container">
+                <img src={pet.img} alt={pet.name} />
+              </div>
               <h4>{pet.name}</h4>
-              <p>{pet.breed} • {pet.age}</p>
+              <p>{pet.species} • {pet.breed}</p>
+              <p>{pet.age}</p>
               <p className="location-tag">📍 {pet.location}</p>
             </div>
           ))}
