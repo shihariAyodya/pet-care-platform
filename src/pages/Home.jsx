@@ -37,6 +37,9 @@ import {
   Filter
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
+import CartDrawer from "../components/CartDrawer";
 import { adoptablePets } from "../data/pets";
 import "../styles/Home.css";
 
@@ -92,6 +95,8 @@ const customerFavorites = [
 
 function Home() {
   const { language, toggleLanguage } = useLanguage();
+  const { currentUser, isAuthenticated } = useAuth();
+  const { totalCartCount, setIsCartOpen, wishlist } = useCart();
   const [selectedCategory] = useState("All Categories");
   const [adoptFilter, setAdoptFilter] = useState("Dog");
 
@@ -140,18 +145,18 @@ function Home() {
               <Globe size={20} />
               <span>{language === "en" ? "EN" : "සිං"}</span>
             </button>
-            <div className="action-item">
+            <Link to={isAuthenticated ? "/profile" : "/login"} className="action-item" style={{ textDecoration: "none", color: "inherit" }}>
               <User size={20} />
-              <span>Account</span>
-            </div>
-            <div className="action-item relative">
+              <span>{isAuthenticated ? (currentUser?.fullName?.split(" ")[0] || "Profile") : "Account"}</span>
+            </Link>
+            <Link to="/shop" className="action-item relative" style={{ textDecoration: "none", color: "inherit" }}>
               <Heart size={20} />
-              <span className="badge">2</span>
+              <span className="badge">{wishlist.length}</span>
               <span>Wishlist</span>
-            </div>
-            <div className="action-item relative">
+            </Link>
+            <div className="action-item relative" onClick={() => setIsCartOpen(true)} style={{ cursor: "pointer" }}>
               <ShoppingCart size={20} />
-              <span className="badge cart-badge">0</span>
+              <span className="badge cart-badge">{totalCartCount}</span>
               <span>Cart</span>
             </div>
           </div>
@@ -159,6 +164,7 @@ function Home() {
 
 
       </header>
+      <CartDrawer />
 
       {/* 3. Hero Section */}
       <section className="hero-banner">
@@ -186,7 +192,7 @@ function Home() {
             </div>
           </div>
 
-          <Link to="/browse" className="shop-now-btn">
+          <Link to="/shop" className="shop-now-btn">
             SHOP NOW <ArrowRight size={18} />
           </Link>
         </div>
@@ -735,7 +741,7 @@ function Home() {
                 <div className="paw-badge">🐾</div>
               </div>
               <h4>{cat.title}</h4>
-              <Link to="/browse" className="explore-link">Explore Now ➔</Link>
+              <Link to="/shop" className="explore-link">Shop Category ➔</Link>
             </div>
           ))}
         </div>
@@ -876,7 +882,7 @@ function Home() {
           <div className="footer-col">
             <h5>SHOP</h5>
             <ul>
-              <li><Link to="/browse">All Products</Link></li>
+              <li><Link to="/shop">All Products</Link></li>
               <li><Link to="/browse">Dogs</Link></li>
               <li><Link to="/browse">Cats</Link></li>
               <li><Link to="/browse">Birds</Link></li>

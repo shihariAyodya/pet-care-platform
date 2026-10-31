@@ -1,82 +1,111 @@
+/* ==========================================================
+   Petzy Care Platform - Browse / Adopt Page Styles
+   Unified with Landing Page Brand Color Theme:
+   --green-dark: #1d4633; --green-hover: #163627;
+   --green-light: #eaf4ee; --accent-gold: #f4b41a;
+   --bg-cream: #faf9f6; --text-primary: #1f2937;
+   ========================================================== */
+
 .browse-page {
-  font-family: 'Segoe UI', 'Noto Sans Sinhala', sans-serif;
-  background-color: #f5efe6;
+  font-family: var(--sans, 'Outfit', 'Inter', system-ui, sans-serif);
+  background-color: var(--bg-cream, #faf9f6);
+  color: var(--text-primary, #1f2937);
   min-height: 100vh;
 }
 
-.navbar {
+/* Navbar */
+.browse-page .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 3rem;
+  padding: 1.2rem 3.5rem;
   background-color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  border-bottom: 1px solid #e5e7eb;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
-.brand-logo {
+.browse-page .brand-logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   text-decoration: none;
 }
 
-.site-logo {
-  height: 45px;
+.browse-page .site-logo {
+  height: 44px;
   width: auto;
   object-fit: contain;
 }
 
-.nav-links a {
-  margin-left: 1.5rem;
+.browse-page .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.browse-page .nav-links a {
   text-decoration: none;
-  color: #5a4634;
-  font-weight: 500;
-}
-
-.nav-links a:hover {
-  color: #6f4e37;
-}
-
-.lang-toggle {
-  background-color: #fffaf3;
-  border: 1px solid #e0d3bd;
-  color: #6f4e37;
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
+  color: #4b5563;
   font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.browse-page .nav-links a:hover {
+  color: var(--green-dark, #1d4633);
+}
+
+.browse-page .lang-toggle {
+  background-color: var(--green-light, #eaf4ee);
+  border: 1px solid #c7e3d1;
+  color: var(--green-dark, #1d4633);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
   font-size: 0.85rem;
   cursor: pointer;
-  margin-left: 1.5rem;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
-.lang-toggle:hover {
-  background-color: #ecdfc8;
+.browse-page .lang-toggle:hover {
+  background-color: #d8ece0;
 }
 
+/* Header & Banner */
 .browse-header {
   text-align: center;
-  padding: 2.5rem 2rem 1.5rem;
+  padding: 3rem 2rem 1.8rem;
 }
 
 .browse-header h2 {
-  color: #4a3626;
-  font-size: 1.8rem;
+  color: var(--green-dark, #1d4633);
+  font-size: 2.3rem;
+  font-weight: 800;
   margin-bottom: 0.5rem;
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.2;
 }
 
 .browse-header p {
-  color: #7a6a58;
+  color: var(--text-secondary, #4b5563);
+  font-size: 1.05rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
+/* Interactive Filter Box */
 .filters {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  padding: 1rem 2rem 2rem;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.4rem 2rem;
   flex-wrap: wrap;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e7e2d7;
+  box-shadow: 0 4px 18px rgba(29, 70, 51, 0.04);
 }
 
 .filter-group {
@@ -86,88 +115,116 @@
 }
 
 .filter-group label {
-  color: #5a4634;
-  font-weight: 600;
-  font-size: 0.9rem;
+  color: #374151;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
-.filter-group select {
-  padding: 0.6rem 1rem;
-  border-radius: 8px;
-  border: 1px solid #e0d3bd;
-  background-color: #fffaf3;
-  color: #4a3626;
-  font-size: 0.95rem;
-  min-width: 160px;
+.filter-group select,
+.filter-group input {
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  border: 1.5px solid #ded8cb;
+  background-color: #faf9f6;
+  color: var(--text-primary, #1f2937);
+  font-size: 0.92rem;
+  min-width: 170px;
   cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
 }
 
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: var(--green-dark, #1d4633);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(29, 70, 51, 0.1);
+}
+
+/* Results & Grid */
 .results {
-  padding: 1rem 3rem 3rem;
+  padding: 1.5rem 2rem 4rem;
   text-align: center;
 }
 
 .results-count {
-  color: #7a6a58;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
+  color: var(--text-secondary, #4b5563);
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .results-grid {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1.8rem;
+  text-align: left;
 }
 
 .results-grid .pet-card {
-  background: #fffaf3;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
-  padding: 1.2rem;
-  width: 220px;
-  text-align: left;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 4px 15px rgba(29, 70, 51, 0.04);
+  border: 1px solid #ebe5da;
+  padding: 1.25rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .results-grid .pet-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 28px rgba(29, 70, 51, 0.09);
+  border-color: #d6cebf;
 }
 
 .results-grid .pet-image-container {
   width: 100%;
-  height: 150px;
-  border-radius: 8px;
-  margin-bottom: 0.8rem;
+  height: 180px;
+  border-radius: 12px;
+  margin-bottom: 0.9rem;
   overflow: hidden;
-  background-color: #f1e4d3;
+  background-color: var(--green-light, #eaf4ee);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .results-grid .pet-image-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.results-grid .pet-card:hover .pet-image-container img {
+  transform: scale(1.05);
 }
 
 .results-grid h4 {
-  color: #4a3626;
-  margin-bottom: 0.3rem;
-}
-
-.results-grid p {
-  color: #8a7a68;
-  font-size: 0.9rem;
+  color: var(--text-primary, #1f2937);
+  font-size: 1.25rem;
+  font-weight: 700;
   margin-bottom: 0.2rem;
 }
 
+.results-grid p {
+  color: var(--text-secondary, #4b5563);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
 .location-tag {
-  color: #6f4e37;
-  font-weight: 500;
+  color: var(--green-dark, #1d4633);
+  font-weight: 600;
 }
 
 .no-results {
-  color: #8a7a68;
+  color: var(--text-muted, #6b7280);
   padding: 2rem;
+  font-size: 1.05rem;
 }

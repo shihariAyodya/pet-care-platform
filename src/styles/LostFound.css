@@ -1,188 +1,266 @@
+/* ==========================================================
+   Petzy Care Platform - Lost & Found Page Styles
+   Unified with Landing Page Brand Color Theme:
+   --green-dark: #1d4633; --green-hover: #163627;
+   --green-light: #eaf4ee; --accent-gold: #f4b41a;
+   --bg-cream: #faf9f6; --text-primary: #1f2937;
+   ========================================================== */
+
 .lostfound-page {
-  font-family: 'Segoe UI', 'Noto Sans Sinhala', sans-serif;
-  background-color: #f5efe6;
+  font-family: var(--sans, 'Outfit', 'Inter', system-ui, sans-serif);
+  background-color: var(--bg-cream, #faf9f6);
+  color: var(--text-primary, #1f2937);
   min-height: 100vh;
 }
 
-.navbar {
+/* Navbar */
+.lostfound-page .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2rem 3rem;
+  padding: 1.2rem 3.5rem;
   background-color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  border-bottom: 1px solid #e5e7eb;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
-.brand-logo {
+.lostfound-page .brand-logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   text-decoration: none;
 }
 
-.site-logo {
-  height: 45px;
+.lostfound-page .site-logo {
+  height: 44px;
   width: auto;
   object-fit: contain;
 }
 
-.nav-links a {
-  margin-left: 1.5rem;
-  text-decoration: none;
-  color: #5a4634;
-  font-weight: 500;
-}
-
-.nav-links a:hover {
-  color: #6f4e37;
-}
-
-.lang-toggle {
-  background-color: #fffaf3;
-  border: 1px solid #e0d3bd;
-  color: #6f4e37;
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  margin-left: 1.5rem;
-  transition: background-color 0.2s ease;
-}
-
-.lang-toggle:hover {
-  background-color: #ecdfc8;
-}
-
-.lostfound-header {
-  text-align: center;
-  padding: 2.5rem 2rem 1.5rem;
-}
-
-.lostfound-header h2 {
-  color: #4a3626;
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-}
-
-.lostfound-header p {
-  color: #7a6a58;
-}
-
-.tabs {
+.lostfound-page .nav-links {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  padding-bottom: 2rem;
-}
-
-.tab-btn {
-  padding: 0.7rem 1.8rem;
-  border-radius: 30px;
-  border: 1px solid #e0d3bd;
-  background-color: #fffaf3;
-  color: #6f4e37;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.tab-btn:hover {
-  background-color: #ecdfc8;
-}
-
-.tab-btn.active {
-  background-color: #8b5e3c;
-  color: white;
-  border-color: #8b5e3c;
-}
-
-.results {
-  padding: 1rem 3rem 3rem;
-  text-align: center;
-}
-
-.results-count {
-  color: #7a6a58;
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-}
-
-.results-grid {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
+  align-items: center;
+  gap: 1.6rem;
   flex-wrap: wrap;
 }
 
-.report-card {
-  background: #fffaf3;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.07);
-  padding: 1.2rem;
-  width: 220px;
-  text-align: left;
-  position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  cursor: pointer;
+.lostfound-page .nav-links a {
+  text-decoration: none;
+  color: #4b5563;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
 }
 
-.report-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+.lostfound-page .nav-links a:hover {
+  color: var(--green-dark, #1d4633);
 }
 
-.report-image-placeholder {
-  width: 100%;
-  height: 150px;
-  background-color: #d9c6ac;
-  border-radius: 8px;
-  margin-bottom: 0.8rem;
-}
-
-.tag {
-  display: inline-block;
-  padding: 0.25rem 0.7rem;
-  border-radius: 20px;
-  font-size: 0.75rem;
+.lostfound-page .lang-toggle {
+  background-color: var(--green-light, #eaf4ee);
+  border: 1px solid #c7e3d1;
+  color: var(--green-dark, #1d4633);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
   font-weight: 700;
-  margin-bottom: 0.6rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.tag-lost {
-  background-color: #f4d4d4;
-  color: #a13c3c;
+.lostfound-page .lang-toggle:hover {
+  background-color: #d8ece0;
 }
 
-.tag-found {
-  background-color: #d4ecd4;
-  color: #3c7a3c;
+/* Banner */
+.lf-compact-banner {
+  background: linear-gradient(135deg, #eaf4ee 0%, #f4fbf6 60%, #fff7e6 100%);
+  border-radius: 20px;
+  padding: 3rem 3.5rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  border: 1px solid #d4ebd9;
+  box-shadow: 0 6px 22px rgba(29, 70, 51, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
-.report-card h4 {
-  color: #4a3626;
+.lf-compact-text h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--green-dark, #1d4633);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.lf-compact-text p {
+  font-size: 1.05rem;
+  color: #4b5563;
+  max-width: 540px;
+}
+
+.lf-compact-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.lf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.lf-btn-lost {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1.5px solid #fca5a5;
+}
+
+.lf-btn-lost:hover {
+  background: #fecaca;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.15);
+}
+
+.lf-btn-found {
+  background: var(--green-dark, #1d4633);
+  color: #ffffff;
+  border: 1.5px solid var(--green-dark, #1d4633);
+}
+
+.lf-btn-found:hover {
+  background: var(--green-hover, #163627);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 70, 51, 0.25);
+}
+
+/* Lost & Found Cards Grid */
+.lf-recent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.8rem;
+  text-align: left;
+}
+
+.lf-pet-card {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(29, 70, 51, 0.04);
+  border: 1px solid #ebe5da;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.lf-pet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(29, 70, 51, 0.08);
+  border-color: #d6cebf;
+}
+
+.lf-pet-img-wrap {
+  position: relative;
+  height: 200px;
+  background-color: var(--green-light, #eaf4ee);
+  overflow: hidden;
+}
+
+.lf-pet-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.lf-pet-card:hover .lf-pet-img {
+  transform: scale(1.05);
+}
+
+.lf-pet-badge {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+.lf-pet-badge.lost {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+.lf-pet-badge.found {
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+
+.lf-pet-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.lf-pet-name-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 0.3rem;
 }
 
-.report-card p {
-  color: #8a7a68;
-  font-size: 0.9rem;
-  margin-bottom: 0.2rem;
+.lf-pet-name-row h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary, #1f2937);
+  margin: 0;
 }
 
-.location-tag {
-  color: #6f4e37;
-  font-weight: 500;
+.lf-pet-breed {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--green-dark, #1d4633);
+  background: var(--green-light, #eaf4ee);
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
 }
 
-.date-tag {
-  color: #a89886;
-  font-size: 0.8rem;
+.lf-pet-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  font-size: 0.84rem;
+  color: #6b7280;
+  margin-top: 0.2rem;
 }
 
-.no-results {
-  color: #8a7a68;
-  padding: 2rem;
+.lf-pet-loc,
+.lf-pet-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.lf-pet-loc {
+  color: var(--green-dark, #1d4633);
+  font-weight: 600;
 }
