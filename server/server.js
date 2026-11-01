@@ -128,7 +128,7 @@ If you observe any of the following symptoms, **seek emergency veterinary medica
   }
 
   // Puppy / Kitten Vaccines
-  if (query.includes("vaccin") || query.includes("shot") || query.includes("immuniz") || query.includes("deworm")) {
+  if (query.includes("vaccin") || query.includes("puppy") || query.includes("kitten") || query.includes("shot")) {
     return `### 💉 Recommended Core Puppy Vaccination Schedule
 
 Vaccinations protect puppies from life-threatening viral infections:
@@ -170,190 +170,51 @@ If your pet had 1–2 mild episodes of vomiting or loose stools:
   }
 
   // Ticks and Fleas
-  if (query.includes("tick") || query.includes("flea") || query.includes("mite") || query.includes("lice")) {
+  if (query.includes("tick") || query.includes("flea") || query.includes("mite")) {
     return `### 🐜 Flea & Tick Treatment and Prevention
 
-Ticks and fleas can transmit dangerous conditions such as Tick Fever (*Babesiosis*, *Ehrlichiosis*) and Flea Allergy Dermatitis (FAD):
+Ticks can transmit dangerous diseases like Tick Fever (Babesiosis) and Ehrlichiosis:
 
-**How to Safely Handle & Remove Ticks:**
-1. **Never Burn or Smother:** Do not use alcohol, petroleum jelly, or matches. This causes the tick to regurgitate pathogens directly into your pet's bloodstream.
-2. **Proper Removal:** Use fine-tipped tweezers or a tick remover hook. Grasp the tick as close to the skin as possible and pull upward with steady, gentle force without twisting or squeezing the abdomen.
-3. **Disinfect:** Clean the bite site with pet-safe antiseptic or diluted chlorhexidine.
-
-**Prevention & Treatment:**
-- **Veterinary Preventatives:** Ask your veterinarian for monthly chewables (*Bravecto, NexGard, Simparica*) or topical spot-on treatments (*Frontline, Revolution*).
-- **Environmental Care:** Wash all bedding in hot water (above 60°C) and vacuum carpets and baseboards thoroughly to remove flea eggs and larvae.`;
-  }
-
-  // Dental & Teeth Care
-  if (query.includes("teeth") || query.includes("tooth") || query.includes("dental") || query.includes("tartar") || query.includes("bad breath") || query.includes("mouth")) {
-    return `### 🦷 Pet Dental Care & Bad Breath Guide
-
-Periodontal disease affects over 80% of dogs and cats by age 3, and bacteria from infected gums can harm their kidneys and heart.
-
-**How to Care for Your Pet's Teeth:**
-1. **Use Pet Toothpaste Only:** Never use human toothpaste! Human toothpaste contains fluoride and foaming agents (or xylitol) that are toxic when swallowed.
-2. **Brushing Routine:**
-   - Start gradually by letting your pet lick meat-flavored pet toothpaste from your finger.
-   - Use a soft-bristled pet toothbrush or finger brush in gentle circular motions on the outer tooth surfaces.
-   - Aim for 3–4 times per week (daily is ideal).
-3. **Dental Chews & Toys:** VOHC-approved (Veterinary Oral Health Council) dental treats and rubber toys help mechanically scrape off soft plaque.
-4. **Warning Signs of Dental Disease:**
-   - Extremely foul breath, red or bleeding gums, yellow/brown tartar crusts.
-   - Dropping food while eating, pawing at the mouth, or chewing on only one side.
-   - If present, schedule a professional ultrasonic dental scaling with your vet clinic.`;
-  }
-
-  // Limping / Paw / Injury / Arthritis
-  if (query.includes("limp") || query.includes("paw") || query.includes("leg") || query.includes("sprain") || query.includes("fracture") || query.includes("arthritis") || query.includes("joint") || query.includes("walk")) {
-    return `### 🐾 Limping & Paw Injury Care Protocol
-
-Limping is a direct physical sign that your pet is experiencing pain or discomfort in a limb, joint, or paw pad.
-
-**Step 1: Gentle At-Home Examination:**
-- **Inspect the Paw Pads:** Look closely between the toes for foreign bodies (thorns, burrs, glass shards, ticks, or bee stings).
-- **Check the Nails:** Look for torn, broken, or overgrown dewclaws that may have curled into the pad.
-- **Check for Heat & Swelling:** Gently run your hand down the leg feeling for warmth, localized swelling, or joint tenderness.
-
-**Step 2: Immediate First-Aid:**
-- **Strict Rest:** Confine your pet to a single room. Prevent running, jumping on furniture, and stairs.
-- **Cold Compress:** If you suspect a recent sprain (within 24 hours), apply a cold pack wrapped in a towel for 10 minutes.
-- **CRITICAL WARNING:** NEVER give human painkillers like Paracetamol (Panadol/Tylenol), Ibuprofen (Advil), or Aspirin! Even a single pill can cause fatal liver failure in cats and severe gastric ulcers/kidney damage in dogs.
-
-**Step 3: When to Visit the Vet:**
-- Complete non-weight-bearing lameness (holding the leg up off the ground).
-- Obvious limb deformity, severe swelling, or deep puncture wounds.
-- Limping that persists for more than 24 hours. Your vet may take digital X-rays to check for ligament tears or fractures.`;
-  }
-
-  // Skin, Itching, Hotspots & Fur Loss
-  if (query.includes("itch") || query.includes("skin") || query.includes("rash") || query.includes("hot spot") || query.includes("fur loss") || query.includes("hair loss") || query.includes("bald") || query.includes("scab") || query.includes("allergy") || query.includes("allergic")) {
-    return `### 🐕 Skin Itching, Allergies & Hot Spot Relief
-
-Excessive scratching, licking paws, and patchy fur loss are frequent issues in companion pets:
-
-**Most Common Causes:**
-- **Allergies:** Atopic dermatitis (environmental dust/pollen), food allergies (often beef or chicken proteins), or flea saliva allergy.
-- **Fungal / Ringworm Infection:** Characterized by circular hair loss patches, dandruff, and brittle hair.
-- **Bacterial Hot Spots:** Warm, moist, red, hairless lesions that appear rapidly from constant licking.
-- **Mange (Demodex or Sarcoptes):** Intense itching, crusting around eyes, elbows, and ears.
-
-**At-Home Relief & Management:**
-1. **Prevent Self-Trauma:** Use an Elizabethan collar (cone/e-collar) to stop continuous licking and secondary bacterial infection.
-2. **Cool Soothing Bath:** Bathe with a veterinary oatmeal or chlorhexidine-based shampoo. Avoid human scented shampoos.
-3. **Omega-3 Fatty Acids:** Adding fish oil to their diet strengthens the epidermal skin barrier.
-4. **Veterinary Diagnosis:** A veterinarian can perform a quick skin scraping or tape impression to prescribe targeted anti-itch medications (such as Apoquel or Cytopoint) or antifungals.`;
-  }
-
-  // Bathing & Grooming
-  if (query.includes("bath") || query.includes("bathe") || query.includes("wash") || query.includes("shampoo") || query.includes("groom") || query.includes("brush")) {
-    return `### 🛁 Pet Bathing & Grooming Best Practices
-
-Keeping your pet clean without stripping their coat of essential natural protective oils:
-
-**How Often to Bathe:**
-- **Dogs:** Every 3 to 4 weeks on average, or when visibly dirty or smelly. Bathing too frequently can strip natural skin lipids and cause dryness and dandruff.
-- **Cats:** Cats groom themselves thoroughly and rarely require full water baths unless they have sticky, oily fur or are hairless breeds (like Sphynx).
-
-**Step-by-Step Bathing Guide:**
-1. **Brush First:** Always brush out loose fur and tangles before getting the coat wet.
-2. **Use Lukewarm Water:** Test the temperature on your wrist. Ensure it is gentle and comfortable.
-3. **Pet-Specific Shampoo:** Pet skin has a neutral pH (around 7.0–7.5), while human skin is acidic (around 5.5). Human shampoo disrupts their skin microbiome.
-4. **Protect Sensitive Areas:** Avoid getting water and soap directly inside their eyes and ears. Place a dry cotton ball gently in each ear during the bath to keep canals dry.
-5. **Dry Thoroughly:** Towel dry carefully. If using a blow dryer, use only the **low/cool** heat setting.`;
-  }
-
-  // Puppy / Cat Training & Behavior
-  if (query.includes("train") || query.includes("bark") || query.includes("potty") || query.includes("pee") || query.includes("housebreak") || query.includes("biting") || query.includes("bite") || query.includes("chew") || query.includes("scratching furniture")) {
-    return `### 🐾 Pet Training & Behavioral Guidance
-
-Positive reinforcement is scientifically proven to produce the fastest, longest-lasting behavioral results:
-
-**Potty Training Tips (Puppies & Kittens):**
-1. **Establish a Routine:** Take puppies outside first thing in the morning, 15 minutes after each meal, immediately after waking from naps, and before bedtime.
-2. **Immediate Reward:** The instant they eliminate in the correct spot, enthusiastically praise them and offer a high-value treat within 2 seconds.
-3. **Litter Box for Cats:** Keep 1 litter box per cat plus 1 extra. Clean daily and position in a quiet, low-traffic area.
-4. **Never Punish Accidents:** Never rub their nose in waste or shout. Clean accidents immediately with an enzymatic cleaner to break down ammonia scent markers.
-
-**Biting & Destructive Chewing:**
-- Puppies explore with their mouths and teethe until 6 months.
-- When they nip your hands, let out a sharp "Ouch!", stop play for 20 seconds, and immediately redirect their teeth onto a designated rubber chew toy.`;
-  }
-
-  // Sneezing / Coughing / Eye Discharge / Upper Respiratory
-  if (query.includes("sneeze") || query.includes("cough") || query.includes("eye") || query.includes("nose") || query.includes("discharge") || query.includes("runny") || query.includes("congest")) {
-    return `### 🐱 Sneezing, Coughing & Respiratory Health
-
-Respiratory symptoms in pets can range from mild dust irritation to contagious viral infections (like Kennel Cough or Feline Herpesvirus):
-
-**What to Check:**
-- **Discharge Color:** Clear, watery discharge often indicates environmental allergies or mild dust irritation. Yellow or green thick mucus indicates active bacterial or viral infection.
-- **Breathing Effort:** Watch their chest and belly while resting. Normal resting breathing rate is 15–30 breaths per minute. Open-mouth panting in cats is always abnormal and requires immediate attention.
-- **Eyes:** Red conjunctiva, squinting, or crusty eyelids should be checked to rule out corneal ulcers.
-
-**Supportive At-Home Care:**
-1. **Steam Therapy:** Bring your pet into the bathroom while running a hot shower for 10–15 minutes. The warm humidity loosens nasal congestion.
-2. **Clean Eyes & Nose:** Gently wipe crusty buildup with sterile saline solution and a soft gauze pad.
-3. **Keep Warm & Rested:** Ensure a draft-free resting spot.
-4. **Consult Your Vet:** If coughing sounds like a loud honking goose (Kennel Cough), or if accompanied by high fever or appetite loss.`;
-  }
-
-  // Safe / Healthy Diets, Nutrition & Feeding
-  if (query.includes("diet") || query.includes("feed") || query.includes("nutrition") || query.includes("kibble") || query.includes("raw") || query.includes("overweight") || query.includes("weight") || query.includes("treat")) {
-    return `### 🥗 Complete Pet Nutrition & Feeding Guidelines
-
-Proper nutrition is the cornerstone of longevity, healthy organ function, and a shiny coat:
-
-**Core Principles for Dogs vs. Cats:**
-- **Dogs are Omnivores:** They thrive on balanced meals with high-quality animal proteins, wholesome grains (or healthy carbs like sweet potato), and dietary fibers.
-- **Cats are Obligate Carnivores:** They strictly require high animal protein and essential amino acids like **Taurine** (found only in animal tissue). Cats must never be fed vegetarian diets.
-
-**Feeding Tips & Portion Control:**
-1. **Follow Life-Stage Formulas:** Puppies/kittens need calorie-dense growth formulas; adults need maintenance; pets over 7 years benefit from senior joint-support blends.
-2. **Portion Measurement:** Always use an actual measuring cup or kitchen scale. Eyeballing kibble easily leads to pet obesity.
-3. **Safe Add-Ins:** You can supplement meals with plain boiled pumpkin (supports digestion), plain cooked green beans, or steamed egg.
-4. **Hydration:** Especially for cats prone to kidney issues, adding wet canned food helps maintain bladder hydration.`;
+**How to Handle Ticks:**
+1. **Safe Removal:** Use fine-tipped tweezers or a tick hook. Grasp the tick as close to the pet's skin surface as possible and pull straight upward with steady, even pressure. Do NOT squeeze or burn the tick.
+2. **Preventatives:** Ask your vet about oral chewables (such as Bravecto, NexGard, or Simparica) or topical spot-on treatments (like Frontline).
+3. **Home Hygiene:** Wash your pet's beddings in hot water and vacuum carpets regularly.`;
   }
 
   // Greetings & General Questions
-  if (query.includes("hello") || query.includes("hi") || query.includes("hey") || query.includes("who are you") || query.trim() === "doctor" || query.trim() === "petzy") {
+  if (query.includes("hello") || query.includes("hi") || query.includes("hey") || query.includes("who are you")) {
     return `👋 **Hello! I'm Petzy Doctor 🩺🐾**, your dedicated AI veterinary assistant for Pet Care Platform.
 
 I'm here 24/7 to help you with:
-- 🩺 Symptom triage (vomiting, scratching, limping, coughs)
-- 🍲 Safe diets, toxic food checks & nutrition advice
-- 💉 Puppy & kitten vaccination protocols
-- 🦷 Dental care, bathing & grooming routines
-- 🩹 First-aid tips & emergency warnings
+- 🩺 Symptom triage & health questions
+- 🍲 Safe diets, toxic foods & nutrition
+- 💉 Puppy & kitten vaccination guides
+- 🩹 First-aid protocols & emergency warnings
 - 📍 Finding trusted veterinary clinics near you
 
-Tell me about your pet! What is their name, species (dog, cat, bird, rabbit), and what question can I answer for you today?`;
+Tell me about your pet! What is their name, species (dog, cat, bird), and what can I assist you with today?`;
   }
 
-  // Contextual Dynamic Advisor (Tailored response based on words detected)
-  const words = query.split(/\s+/).filter(w => w.length > 2);
-  const detectedSubject = words.slice(0, 4).join(" ");
-
+  // Default veterinary consultation reply
   return `### 🩺 Petzy Doctor Veterinary Consultation
 
-Thank you for consulting Petzy Doctor regarding **"${detectedSubject || "your pet's wellness"}"**. Here is my clinical advice for this situation:
+Thank you for reaching out about your pet's care! Here are some key points to consider:
 
-**1. Primary Health & Symptom Checklist:**
-- **Monitor Vital Signs:** Observe your pet's energy level, water intake, gum color (should be pink and moist), and breathing rate.
-- **Track Any Changes:** Note down when this behavior or symptom first started and whether it is staying consistent or worsening.
-- **Comfortable Environment:** Keep your pet in a warm, quiet, well-ventilated room with fresh water always available.
+1. **Observe Vital Signs:**
+   - Watch for changes in appetite, water intake, breathing rate, and bathroom habits.
+   - Look out for unusual lethargy, trembling, or hiding behavior.
 
-**2. Important Safety Measures:**
-- Never give human over-the-counter pain relievers or fever reducers (such as Paracetamol/Panadol, Tylenol, or Ibuprofen), as these are toxic to pets.
-- If you suspect any toxin exposure, sudden abdominal swelling, breathing distress, or intense pain, seek emergency care immediately.
+2. **Home Care:**
+   - Ensure a clean, comfortable, and stress-free resting environment.
+   - Keep plenty of fresh, clean water readily accessible.
+   - Avoid administering any human over-the-counter medicine without veterinary approval.
 
-**3. Next Recommended Steps:**
-- For non-emergency symptoms lasting more than 24 hours, have your pet examined in person by a veterinarian.
-- You can find verified clinics nearby anytime in our **[Vet Directory](/vets)**!
+3. **When to Consult a Clinic:**
+   - If symptoms persist for more than 24 hours or suddenly deteriorate, visit a registered veterinarian.
+   - You can browse verified clinics in your area under our **Vet Directory** page!
 
-*Would you like more specific guidance? Feel free to tell me your pet's species, age, and any additional symptoms they are showing!*`;
+*How else can I assist with your pet's health or wellness today?*`;
 }
-
 
 app.post("/chat", async (req, res) => {
   try {
@@ -409,6 +270,204 @@ app.post("/chat", async (req, res) => {
     res.json({
       reply: "Petzy Doctor is currently resting or taking a short break. For urgent pet emergencies, please contact your local vet clinic."
     });
+  }
+});
+
+// Fallback intelligent pet name generator if AI provider experiences rate-limiting or offline
+function generateFallbackPetNames(preferences) {
+  const { petType = "Dog", appearance = {}, personality = [] } = preferences || {};
+  const isDog = (petType || "").toLowerCase().includes("dog");
+  const isCat = (petType || "").toLowerCase().includes("cat");
+  const isBird = (petType || "").toLowerCase().includes("bird");
+
+  return [
+    {
+      name: isDog ? "Milo" : isCat ? "Luna" : isBird ? "Pip" : "Boba",
+      meaning: "Beloved and peaceful companion",
+      origin: "Latin & Germanic",
+      style: ["Cute and adorable", "Friendly"],
+      reason: `Matches your pet's ${personality[0] || "affectionate"} nature and gentle presence.`,
+      pronunciation: isDog ? "MY-loh" : isCat ? "LOO-nuh" : "PIP"
+    },
+    {
+      name: "Jasper",
+      meaning: "Spotted or speckled gemstone",
+      origin: "Persian",
+      style: ["Nature-inspired", "Classy"],
+      reason: `A precious gemstone name reflecting ${appearance.color || "unique"} color tones.`,
+      pronunciation: "JAS-per"
+    },
+    {
+      name: "Sunny",
+      meaning: "Full of bright sunshine and cheer",
+      origin: "English",
+      style: ["Cute and adorable", "Modern"],
+      reason: `Expresses pure warmth, brightness, and a ${personality[1] || "playful"} spirit.`,
+      pronunciation: "SUN-ee"
+    },
+    {
+      name: "Nova",
+      meaning: "A bright new star",
+      origin: "Latin",
+      style: ["Modern and trendy", "Mythological"],
+      reason: "Great for an energetic pet whose personality lights up the room.",
+      pronunciation: "NOH-vuh"
+    },
+    {
+      name: "Zeus",
+      meaning: "Sky, thunder, and radiant strength",
+      origin: "Greek mythology",
+      style: ["Strong and powerful", "Mythological"],
+      reason: "A majestic, confident name fitting a bold or protective companion.",
+      pronunciation: "ZOOS"
+    },
+    {
+      name: "Willow",
+      meaning: "Slender, graceful tree known for resilience",
+      origin: "Old English",
+      style: ["Nature-inspired", "Elegant and classy"],
+      reason: "A calm, poetic name that suits an intuitive, gentle pet.",
+      pronunciation: "WIL-oh"
+    },
+    {
+      name: "Mochi",
+      meaning: "Sweet, soft Japanese rice treat",
+      origin: "Japanese",
+      style: ["Cute and adorable", "Funny and creative"],
+      reason: "Adorable and sweet, ideal for a cuddle-loving friend.",
+      pronunciation: "MOH-chee"
+    },
+    {
+      name: "Koda",
+      meaning: "Little bear or loyal ally",
+      origin: "Native American roots",
+      style: ["Short and simple", "Traditional"],
+      reason: "Short, punchy, and communicates deep loyalty and friendship.",
+      pronunciation: "KOH-duh"
+    },
+    {
+      name: "Cleo",
+      meaning: "Glory and pride",
+      origin: "Greek",
+      style: ["Elegant and classy", "Short and simple"],
+      reason: "Graceful and spirited with a timeless royal touch.",
+      pronunciation: "KLEE-oh"
+    },
+    {
+      name: "Peanut",
+      meaning: "Small, endearing, and lovable",
+      origin: "Modern",
+      style: ["Cute and adorable", "Short and simple"],
+      reason: "A playful, warm moniker perfect for a spunky personality.",
+      pronunciation: "PEE-nut"
+    }
+  ];
+}
+
+// AI Pet Name Generator Endpoint
+app.post("/api/pet-names/generate", async (req, res) => {
+  try {
+    const preferences = req.body || {};
+    const {
+      petType = "Pet",
+      customPetType = "",
+      gender = "No preference",
+      color = "Not sure",
+      specialFeatures = "",
+      personality = [],
+      styles = [],
+      language = "No preference",
+      meanings = [],
+      additionalNotes = "",
+      nameLength = "No preference",
+      favoriteNames = "",
+      excludeFavorites = false
+    } = preferences;
+
+    const resolvedPetType = customPetType ? customPetType.trim() : petType;
+
+    const systemPrompt = `You are an expert AI Pet Name Specialist and creative linguist for a top-tier Pet Care Platform.
+Your task is to analyze the user's pet profile and generate exactly 10 distinct, creative, and personalized pet names.
+
+Rules:
+1. Return ONLY a single valid JSON object with the exact structure below. Do not wrap in markdown or backticks.
+{
+  "names": [
+    {
+      "name": "Luna",
+      "meaning": "Moon-inspired name representing gentleness",
+      "origin": "Latin-inspired",
+      "style": ["Cute", "Elegant"],
+      "reason": "A gentle name that suits a calm and affectionate pet.",
+      "pronunciation": "LOO-nuh"
+    }
+  ]
+}
+2. Suggest 10 different names rather than variations of the same name.
+3. Prioritize user's preferred styles, pet type, appearance, and personality.
+4. Adapt appearance notes to the species (e.g. scales/feathers/fur).
+5. For language/culture, honor the request if specified (e.g. Sinhala, Tamil, Japanese, Sanskrit, Greek/Roman mythology).
+6. Provide an accurate or clearly labeled inspiration for every name. Do not invent false etymologies.
+7. If requested to exclude existing favorite names: "${excludeFavorites ? (favoriteNames || 'none') : 'none'}", DO NOT repeat any of those names.
+8. Length preference: ${nameLength}.`;
+
+    const userPrompt = `Generate 10 personalized pet names for:
+- Animal: ${resolvedPetType}
+- Gender preference: ${gender}
+- Appearance/Color: ${color} ${specialFeatures ? `(${specialFeatures})` : ""}
+- Personality traits: ${personality.length > 0 ? personality.join(", ") : "Not specified"}
+- Naming styles: ${styles.length > 0 ? styles.join(", ") : "Creative & fitting"}
+- Cultural / Language inspiration: ${language}
+- Desired meanings: ${meanings.length > 0 ? meanings.join(", ") : "Any positive meaning"}
+- Additional notes: ${additionalNotes || "None"}
+- Favorite names / inspiration: ${favoriteNames || "None"}`;
+
+    const client = getClient();
+    let names = null;
+
+    if (client) {
+      try {
+        const completion = await client.chat.completions.create({
+          model: "llama-3.3-70b-versatile",
+          temperature: 0.8,
+          response_format: { type: "json_object" },
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: userPrompt }
+          ]
+        });
+
+        const rawContent = completion.choices?.[0]?.message?.content?.trim();
+        if (rawContent) {
+          const parsed = JSON.parse(rawContent);
+          if (Array.isArray(parsed.names) && parsed.names.length > 0) {
+            names = parsed.names;
+          }
+        }
+      } catch (err) {
+        console.warn("AI generation error, using smart fallback:", err?.message || err);
+      }
+    }
+
+    if (!names || names.length === 0) {
+      names = generateFallbackPetNames(preferences);
+    }
+
+    // Sanitize and ensure format
+    const validatedNames = names.slice(0, 10).map((item, index) => ({
+      id: `name-${Date.now()}-${index}`,
+      name: item.name || `Pet ${index + 1}`,
+      meaning: item.meaning || "A beautiful, meaningful name for your pet",
+      origin: item.origin || "Creative inspiration",
+      style: Array.isArray(item.style) ? item.style : [item.style || "Unique"],
+      reason: item.reason || `Perfectly suited for a wonderful ${resolvedPetType}.`,
+      pronunciation: item.pronunciation || item.name || ""
+    }));
+
+    res.json({ names: validatedNames });
+  } catch (error) {
+    console.error("Pet Names Generation Error:", error?.message || error);
+    res.status(500).json({ error: "Failed to generate pet names. Please try again." });
   }
 });
 

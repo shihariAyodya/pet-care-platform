@@ -2402,3 +2402,142 @@
   text-decoration: none;
   color: inherit;
 }
+
+/* 3.6 AI Pet Name Generator Banner Section */
+.name-generator-banner-section {
+  margin: 0 2rem 2.5rem;
+}
+
+.name-gen-banner-container {
+  background: linear-gradient(135deg, #1d4633 0%, #173829 60%, #112a1f 100%);
+  border-radius: 20px;
+  padding: 1.25rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(29, 70, 51, 0.25);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.name-gen-banner-container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.name-gen-banner-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px -5px rgba(29, 70, 51, 0.35);
+  border-color: rgba(250, 204, 21, 0.3);
+}
+
+.name-gen-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.name-gen-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fef08a;
+  padding: 0.35rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.sparkle-gold {
+  color: #facc15;
+}
+
+.name-gen-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.name-gen-title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.name-gen-subtitle {
+  color: #d1fae5;
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 400;
+}
+
+.name-gen-right {
+  flex-shrink: 0;
+}
+
+.name-gen-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: #f4b41a;
+  color: #1a1a1a;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.8rem 1.6rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(244, 180, 26, 0.35);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.name-gen-action-btn:hover {
+  background-color: #f5c03e;
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(244, 180, 26, 0.45);
+}
+
+.wand-icon {
+  color: #1a1a1a;
+}
+
+@media (max-width: 900px) {
+  .name-gen-banner-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 1.5rem;
+    gap: 1.25rem;
+  }
+  .name-gen-left {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .name-gen-right {
+    width: 100%;
+  }
+  .name-gen-action-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
