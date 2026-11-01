@@ -17,7 +17,9 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Grooming from "./pages/Grooming";
 import Training from "./pages/Training";
-import PetSitting from "./pages/PetSitting";
+import PetSitting from "./pages/Petsitting";
+import PetTransport from "./pages/PetTransport";
+import PetShops from "./pages/PetShops";
 
 function App() {
   return (
@@ -37,7 +39,9 @@ function App() {
               <Route path="/report-found" element={<ReportFound />} />
               <Route path="/grooming" element={<Grooming />} />
               <Route path="/training" element={<Training />} />
-            <Route path="/sitting" element={<PetSitting />} />
+              <Route path="/sitting" element={<PetSitting />} />
+              <Route path="/transport" element={<PetTransport />} />
+              <Route path="/shops" element={<PetShops />} />
 
 
               {/* Auth and Profile routes */}
