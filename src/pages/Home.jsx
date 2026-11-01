@@ -1,3 +1,4 @@
+import Footer from "../components/Footer";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -654,66 +655,7 @@ function Home() {
       </section>
 
       {/* 9. Footer */}
-      <footer className="footer">
-        <div className="footer-columns">
-          <div className="footer-col brand-col">
-            <div className="brand-logo">
-              <img src="/store/logo.png" alt="Site Logo" className="site-logo" />
-            </div>
-            <p className="footer-tagline">Everything your pet needs, all in one place.</p>
-            <div className="social-icons">
-              <span className="pay-badge">FB</span>
-              <span className="pay-badge">IG</span>
-              <span className="pay-badge">YT</span>
-            </div>
-          </div>
-
-          <div className="footer-col">
-            <h5>SHOP</h5>
-            <ul>
-              <li><Link to="/shop">All Products</Link></li>
-              <li><Link to="/browse">Dogs</Link></li>
-              <li><Link to="/browse">Cats</Link></li>
-              <li><Link to="/browse">Birds</Link></li>
-              <li><Link to="/browse">Small Pets</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h5>CUSTOMER SERVICE</h5>
-            <ul>
-              <li><Link to="#">My Account</Link></li>
-              <li><Link to="#">Order Tracking</Link></li>
-              <li><Link to="#">Returns & Refunds</Link></li>
-              <li><Link to="#">Shipping Info</Link></li>
-              <li><Link to="#">FAQs</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-col">
-            <h5>INFORMATION</h5>
-            <ul>
-              <li><Link to="#">About Us</Link></li>
-              <li><Link to="/articles">Blog</Link></li>
-              <li><Link to="#">Privacy Policy</Link></li>
-              <li><Link to="#">Terms & Conditions</Link></li>
-              <li><Link to="/lost-found">Contact Us</Link></li>
-            </ul>
-          </div>
-
-          <div className="footer-col payments-col">
-            <h5>WE ACCEPT</h5>
-            <div className="payment-badges">
-              <span className="pay-badge visa">VISA</span>
-              <span className="pay-badge mc">MC</span>
-              <span className="pay-badge amex">AMEX</span>
-              <span className="pay-badge paypal">PayPal</span>
-              <span className="pay-badge apple">ApplePay</span>
-              <span className="pay-badge gpay">GPay</span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       {/* AI Pet Name Generator Modal */}
       <PetNameGeneratorModal
         isOpen={isNameGenOpen}

@@ -17,7 +17,7 @@ import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
 import Grooming from "./pages/Grooming";
 import Training from "./pages/Training";
-import PetSitting from "./pages/Petsitting";
+import PetSitting from "./pages/PetSitting";
 import PetTransport from "./pages/PetTransport";
 import PetShops from "./pages/PetShops";
 

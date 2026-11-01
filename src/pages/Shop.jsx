@@ -1,3 +1,5 @@
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -91,26 +93,7 @@ export default function Shop() {
   return (
     <div className="shop-page">
       {/* Top Navbar */}
-      <nav className="navbar">
-        <Link to="/" className="brand-logo">
-          <img src="/store/logo.png" alt="Pet Care Platform" className="site-logo" />
-        </Link>
-        <div className="nav-links">
-          <Link to="/browse">Adopt</Link>
-          <Link to="/shop" style={{ color: "var(--green-dark)", fontWeight: "700" }}>Shop</Link>
-          <Link to="/lost-found">Lost & Found</Link>
-          <Link to="/vets">Vet Directory</Link>
-          <Link to="/smart-match">Smart Match</Link>
-          {isAuthenticated ? (
-            <Link to="/profile">👤 {currentUser?.fullName?.split(" ")[0] || "Profile"}</Link>
-          ) : (
-            <Link to="/login">Login</Link>
-          )}
-          <button className="lang-toggle" onClick={toggleLanguage}>
-            {language === "en" ? "සිං" : "EN"}
-          </button>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Hero Banner */}
       <section className="shop-hero">
@@ -390,6 +373,7 @@ export default function Shop() {
 
       {/* Slide-out Cart Drawer */}
       <CartDrawer />
+    <Footer />
     </div>
   );
 }

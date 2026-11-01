@@ -1,3 +1,5 @@
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { 
@@ -113,20 +115,7 @@ export default function Profile() {
   return (
     <div className="profile-page">
       {/* Top Navbar */}
-      <nav className="navbar">
-        <Link to="/" className="brand-logo">
-          <img src="/store/logo.png" alt="Pet Care Platform" className="site-logo" />
-        </Link>
-        <div className="nav-links">
-          <Link to="/browse">Adopt</Link>
-          <Link to="/lost-found">Lost & Found</Link>
-          <Link to="/vets">Vet Directory</Link>
-          <Link to="/smart-match">Smart Match</Link>
-          <button className="lang-toggle" onClick={toggleLanguage}>
-            {language === "en" ? "සිං" : "EN"}
-          </button>
-        </div>
-      </nav>
+      <Navbar />
 
       <div className="profile-container">
         {/* Cover & Profile Header Card */}
@@ -492,6 +481,7 @@ export default function Profile() {
           </section>
         </div>
       </div>
+    <Footer />
     </div>
   );
 }

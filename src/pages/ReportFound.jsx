@@ -1,3 +1,5 @@
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import "../styles/ReportFound.css";
@@ -29,6 +31,7 @@ function ReportFound() {
 
   return (
     <div className="report-found-page">
+      <Navbar />
       <h2 className="page-title">{t("reportFound.title") || "Report a Found Pet"}</h2>
       <p className="page-subtitle">{t("reportFound.subtitle") || "Help reunite pets with their owners."}</p>
       <form className="report-form" onSubmit={handleSubmit}>
@@ -56,6 +59,7 @@ function ReportFound() {
           <Check size={18} /> {t("reportFound.submit") || "Submit"}
         </button>
       </form>
+    <Footer />
     </div>
   );
 }
