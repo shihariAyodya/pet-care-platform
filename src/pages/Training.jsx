@@ -1,3 +1,5 @@
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -164,28 +166,7 @@ function Training() {
       )}
 
       {/* Navbar */}
-      <nav className="navbar">
-        <Link to="/" className="brand-logo">
-          <img src="/store/logo.png" alt="Site Logo" className="site-logo" />
-        </Link>
-        <div className="nav-links">
-          <Link to="/browse">{t("nav.adopt")}</Link>
-          <Link to="/shop">Shop</Link>
-          <Link to="/lost-found">{t("nav.lostFound")}</Link>
-          <Link to="/vets">{t("nav.vetDirectory")}</Link>
-          <Link to="/grooming">Grooming</Link>
-          <Link to="/training" className="active">Training</Link>
-          <Link to="/smart-match">Smart Match</Link>
-          {isAuthenticated ? (
-            <Link to="/profile">👤 {currentUser?.fullName?.split(" ")[0] || "Profile"}</Link>
-          ) : (
-            <Link to="/login">{t("nav.login")}</Link>
-          )}
-          <button className="lang-toggle" onClick={toggleLanguage}>
-            {language === "en" ? "සිං" : "EN"}
-          </button>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Header */}
       <section className="train-header">
@@ -459,6 +440,7 @@ function Training() {
           </div>
         </div>
       )}
+    <Footer />
     </div>
   );
 }

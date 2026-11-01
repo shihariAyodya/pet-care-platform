@@ -1,3 +1,5 @@
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import "../styles/ReportLost.css";
@@ -30,6 +32,7 @@ function ReportLost() {
 
   return (
     <div className="report-lost-page">
+      <Navbar />
       <h2 className="page-title">{t("reportLost.title") || "Report a Lost Pet"}</h2>
       <p className="page-subtitle">{t("reportLost.subtitle") || "Help us find your missing companion."}</p>
       <form className="report-form" onSubmit={handleSubmit}>
@@ -57,6 +60,7 @@ function ReportLost() {
           <Check size={18} /> {t("reportLost.submit") || "Submit Report"}
         </button>
       </form>
+    <Footer />
     </div>
   );
 }

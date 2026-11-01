@@ -1,0 +1,99 @@
+.app-footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  padding: 3.5rem 3rem 2.5rem;
+  text-align: left;
+  margin-top: auto;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.app-footer .footer-columns {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr) 1.5fr;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-footer .brand-col .site-logo {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+
+.app-footer .brand-col .footer-tagline {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 1rem 0 1.2rem;
+  line-height: 1.5;
+}
+
+.app-footer .social-icons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.app-footer .footer-col h5 {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.app-footer .footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.app-footer .footer-col li {
+  margin-bottom: 0.6rem;
+}
+
+.app-footer .footer-col a {
+  font-size: 0.85rem;
+  color: #475569;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.app-footer .footer-col a:hover {
+  color: #1d4633;
+  text-decoration: underline;
+}
+
+.app-footer .payment-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.app-footer .pay-badge {
+  background-color: #f1f5f9;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+@media (max-width: 992px) {
+  .app-footer {
+    padding: 2.5rem 1.5rem;
+  }
+  .app-footer .footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-footer .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
