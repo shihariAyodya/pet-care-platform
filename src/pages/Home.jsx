@@ -25,7 +25,6 @@ import {
   Activity,
   Users,
   Check,
-  LifeBuoy,
   Scissors,
   GraduationCap,
   Car,
@@ -257,9 +256,8 @@ function Home() {
           <h2>Your lifestyle. Their personality. <span className="highlight-text">Perfect match.</span></h2>
           <p>Answer a few simple questions and discover pets that fit your lifestyle.</p>
         </div>
-        
-        <div className="smart-match-container">
-          {/* Left Panel */}
+
+        <div className="smart-match-container single">
           <div className="match-left-panel">
             <div className="panel-label">ABOUT YOUR LIFE</div>
             <div className="lifestyle-grid">
@@ -292,58 +290,9 @@ function Home() {
                 </div>
               </div>
             </div>
-            <Link to="/smart-match" className="find-match-btn" style={{textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Find My Match <ArrowRight size={18} /></Link>
-          </div>
-          
-          {/* Visual Connector */}
-          <div className="match-connector">
-            <div className="connector-line"></div>
-            <div className="connector-icon"><Search size={24} color="#10b981" /></div>
-          </div>
-          
-          {/* Right Panel */}
-          <div className="match-right-panel">
-            <div className="match-card-wrapper">
-              <div className="match-score-badge">
-                <span className="score-text">💚 96% Match</span>
-                <div className="circular-progress">
-                  <svg viewBox="0 0 36 36" className="circular-chart green">
-                    <path className="circle-bg"
-                      d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                    />
-                    <path className="circle"
-                      style={{ "--progress": 96 }}
-                      strokeDasharray="0, 100"
-                      d="M18 2.0845
-                        a 15.9155 15.9155 0 0 1 0 31.831
-                        a 15.9155 15.9155 0 0 1 0 -31.831"
-                    />
-                  </svg>
-                </div>
-              </div>
-              
-              <div className="match-pet-profile">
-                <img src="/store/buddy_match_dog.png" alt="Buddy the Golden Retriever" className="match-pet-img" />
-                <div className="match-pet-info">
-                  <h3>Buddy</h3>
-                  <p>Golden Retriever • 2 Years</p>
-                </div>
-              </div>
-              
-              <div className="match-reasons">
-                <h4>Why Buddy?</h4>
-                <ul className="reason-list">
-                  <li><Check size={16} className="check-icon" /> Activity level matches</li>
-                  <li><Check size={16} className="check-icon" /> Suitable for your home</li>
-                  <li><Check size={16} className="check-icon" /> Friendly personality</li>
-                  <li><Check size={16} className="check-icon" /> Fits your available time</li>
-                </ul>
-              </div>
-              
-              <button className="meet-match-btn">Meet Buddy <ArrowRight size={16} /></button>
-            </div>
+            <Link to="/smart-match" className="find-match-btn">
+              Find My Match <ArrowRight size={18} />
+            </Link>
           </div>
         </div>
       </section>

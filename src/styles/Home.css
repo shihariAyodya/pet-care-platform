@@ -2541,3 +2541,75 @@
     justify-content: center;
   }
 }
+
+
+/* ===== Smart Match – single centered card ===== */
+.smart-match-container.single {
+  display: flex;
+  justify-content: center;
+  grid-template-columns: none;
+  max-width: 640px;
+  margin: 40px auto 0;
+}
+
+.smart-match-container.single .match-left-panel {
+  width: 100%;
+  max-width: 640px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.smart-match-container.single .panel-label {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.smart-match-container.single .lifestyle-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.smart-match-container.single .lifestyle-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 84px;
+  padding: 16px 18px;
+  box-sizing: border-box;
+}
+
+.smart-match-container.single .icon-box {
+  flex-shrink: 0;
+}
+
+.smart-match-container.single .lifestyle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.smart-match-container.single .lifestyle-value {
+  white-space: nowrap;   /* keeps "3–4 hours/day" on one line */
+}
+
+.smart-match-container.single .find-match-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+@media (max-width: 560px) {
+  .smart-match-container.single .match-left-panel {
+    padding: 24px;
+  }
+  .smart-match-container.single .lifestyle-grid {
+    grid-template-columns: 1fr;
+  }
+}
