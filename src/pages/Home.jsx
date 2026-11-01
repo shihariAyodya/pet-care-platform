@@ -178,14 +178,22 @@ function Home() {
               ><PawPrint size={14} /> Others</button>
             </div>
           </div>
-          <Link to="/adopt" className="view-all-link">View All <ArrowRight size={16} /></Link>
+          <Link to="/browse" className="view-all-link">View All <ArrowRight size={16} /></Link>
         </div>
 
         <div className="adoption-grid">
           {adoptablePets.filter(pet => adoptFilter === "Other" ? (pet.species !== "Dog" && pet.species !== "Cat") : pet.species === adoptFilter).map((pet) => (
             <div key={pet.id} className="adopt-card">
               <div className="adopt-img-wrapper">
-                <img src={pet.img} alt={pet.name} className="adopt-img" />
+                <img
+                  src={pet.img}
+                  alt={pet.name}
+                  className="adopt-img"
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/store/fav_buddy.png";
+                  }}
+                />
                 <button className="adopt-heart-btn" aria-label="Favorite">
                   <Heart size={12} />
                 </button>
@@ -210,7 +218,9 @@ function Home() {
                   </div>
                 </div>
                 
-                <button className="meet-btn">Meet {pet.name} <ArrowRight size={16} /></button>
+                <Link to="/browse" className="meet-btn" style={{ textDecoration: "none" }}>
+                  Meet {pet.name} <ArrowRight size={16} />
+                </Link>
               </div>
             </div>
           ))}
