@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   Search,
   Phone,
@@ -82,7 +82,8 @@ function PetShops() {
   const { currentUser, isAuthenticated } = useAuth();
 
   // Search & Filter
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchParams] = useSearchParams();
+const [searchTerm, setSearchTerm] = useState(searchParams.get("q") || "");
   const [cityFilter, setCityFilter] = useState("All");
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [deliveryOnly, setDeliveryOnly] = useState(false);
