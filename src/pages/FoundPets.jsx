@@ -1,3 +1,5 @@
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useLanguage } from "../context/LanguageContext";
 import { lostFoundPets } from "../data/lostFoundPets";
 import "../styles/FoundPets.css";
@@ -10,6 +12,7 @@ function FoundPets() {
 
   return (
     <div className="found-pets-page">
+      <Navbar />
       <h2 className="page-title">{t("foundPets.title") || "Found Pets"}</h2>
       <p className="page-subtitle">
         {t("foundPets.subtitle") || "Pets that have been reported as found."}
@@ -46,6 +49,7 @@ function FoundPets() {
           </p>
         )}
       </div>
+    <Footer />
     </div>
   );
 }

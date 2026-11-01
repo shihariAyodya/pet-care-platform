@@ -1,3 +1,5 @@
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Home, Clock, Activity, Users, CheckCircle2, RotateCcw } from "lucide-react";
@@ -106,12 +108,7 @@ function SmartMatch() {
   if (matches) {
     return (
       <div className="smart-match-page">
-        <nav className="navbar">
-          <Link to="/" className="brand-logo">
-            <img src="/store/logo.png" alt="Site Logo" className="site-logo" />
-          </Link>
-          <Link to="/" className="back-home-link"><ArrowLeft size={16} /> Back to Home</Link>
-        </nav>
+        <Navbar />
 
         <div className="results-container">
           <div className="results-header">
@@ -170,12 +167,7 @@ function SmartMatch() {
 
   return (
     <div className="smart-match-page">
-      <nav className="navbar">
-        <Link to="/" className="brand-logo">
-          <img src="/store/logo.png" alt="Site Logo" className="site-logo" />
-        </Link>
-        <Link to="/" className="back-home-link"><ArrowLeft size={16} /> Back to Home</Link>
-      </nav>
+      <Navbar />
 
       <div className="quiz-container">
         <div className="progress-bar">
@@ -214,6 +206,7 @@ function SmartMatch() {
           </button>
         </div>
       </div>
+    <Footer />
     </div>
   );
 }
