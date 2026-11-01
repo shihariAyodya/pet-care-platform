@@ -15,6 +15,11 @@ import ReportLost from "./pages/ReportLost";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile";
+import Grooming from "./pages/Grooming";
+import Training from "./pages/Training";
+import PetSitting from "./pages/Petsitting";
+import PetTransport from "./pages/PetTransport";
+import PetShops from "./pages/PetShops";
 
 function App() {
   return (
@@ -32,7 +37,13 @@ function App() {
               <Route path="/found-pets" element={<FoundPets />} />
               <Route path="/report-lost" element={<ReportLost />} />
               <Route path="/report-found" element={<ReportFound />} />
-              
+              <Route path="/grooming" element={<Grooming />} />
+              <Route path="/training" element={<Training />} />
+              <Route path="/sitting" element={<PetSitting />} />
+              <Route path="/transport" element={<PetTransport />} />
+              <Route path="/shops" element={<PetShops />} />
+
+
               {/* Auth and Profile routes */}
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
