@@ -34,63 +34,17 @@ import {
   Rabbit,
   AlertCircle,
   Bookmark,
-  Filter
+  Filter,
+  Sparkles,
+  Wand2
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import CartDrawer from "../components/CartDrawer";
+import PetNameGeneratorModal from "../components/PetNameGeneratorModal";
 import { adoptablePets } from "../data/pets";
 import "../styles/Home.css";
-
-const categories = [
-  { id: "cats", title: "Cats", archBg: "var(--arch-cats)", img: "/store/cat_cat.png" },
-  { id: "dogs", title: "Dogs", archBg: "var(--arch-dogs)", img: "/store/dog_cat.png" },
-  { id: "birds", title: "Birds", archBg: "var(--arch-birds)", img: "/store/bird_cat.png" },
-  { id: "pets", title: "Small Pets", archBg: "var(--arch-pets)", img: "/store/rabbit_cat.png" }
-];
-
-const products = [
-  {
-    id: 1,
-    name: "Premium Dog Food",
-    rating: 5,
-    reviews: 128,
-    price: "LKR 990.00",
-    img: "/store/prod_food.png"
-  },
-  {
-    id: 2,
-    name: "Durable Dog Toy",
-    rating: 5,
-    reviews: 94,
-    price: "LKR 1490.00",
-    img: "/store/prod_toy.png"
-  },
-  {
-    id: 3,
-    name: "Comfort Pet Collar",
-    rating: 5,
-    reviews: 84,
-    price: "LKR 250.00",
-    img: "/store/prod_collar.png"
-  },
-  {
-    id: 4,
-    name: "Cozy Pet Bed",
-    rating: 5,
-    reviews: 72,
-    price: "LKR 750.00",
-    img: "/store/prod_bed.png"
-  }
-];
-
-const customerFavorites = [
-  { id: 1, name: "Happy Buddy", breed: "Golden Retriever", img: "/store/fav_buddy.png", bg: "#fce7d2" },
-  { id: 2, name: "Milo", breed: "Shih Tzu", img: "/store/fav_shih_tzu.png", bg: "#fde2e4" },
-  { id: 3, name: "Luna", breed: "British Shorthair", img: "/store/fav_luna.png", bg: "#e2ece9" },
-  { id: 4, name: "Coco", breed: "Netherland Dwarf", img: "/store/fav_coco.png", bg: "#fee1e8" }
-];
 
 
 function Home() {
@@ -99,6 +53,7 @@ function Home() {
   const { totalCartCount, setIsCartOpen, wishlist } = useCart();
   const [selectedCategory] = useState("All Categories");
   const [adoptFilter, setAdoptFilter] = useState("Dog");
+  const [isNameGenOpen, setIsNameGenOpen] = useState(false);
 
   return (
     <div className="pet-store-page">
@@ -263,6 +218,39 @@ function Home() {
         </div>
       </section>
 
+      {/* 3.6 AI Pet Name Generator Banner Section */}
+      <section className="name-generator-banner-section">
+        <div className="name-gen-banner-container" onClick={() => setIsNameGenOpen(true)}>
+          <div className="name-gen-left">
+            <div className="name-gen-badge">
+              <Sparkles size={16} className="sparkle-gold" />
+              <span>New AI Feature</span>
+            </div>
+            <div className="name-gen-text">
+              <h3 className="name-gen-title">AI Pet Name Generator</h3>
+              <p className="name-gen-subtitle">
+                Find the perfect name for your furry friend with a little help from AI.
+              </p>
+            </div>
+          </div>
+
+          <div className="name-gen-right">
+            <button
+              type="button"
+              className="name-gen-action-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsNameGenOpen(true);
+              }}
+            >
+              <Wand2 size={18} className="wand-icon" />
+              <span>Find My Pet's Name</span>
+              <ArrowRight size={16} />
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* 3.75 Smart Pet Match Section */}
       <section className="smart-match-section">
         <div className="smart-match-header">
@@ -356,80 +344,6 @@ function Home() {
               
               <button className="meet-match-btn">Meet Buddy <ArrowRight size={16} /></button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3.8 What are you looking for Section */}
-      <section className="action-hub-section">
-        <div className="action-hub-header">
-          <h2>What are you looking for?</h2>
-          <p>Whatever your pet needs, start here.</p>
-        </div>
-
-        <div className="action-grid">
-          {/* Main Primary Card - Adopt */}
-          <Link to="/adopt" className="action-card primary-card adopt-theme">
-            <div className="action-bg-wrap">
-              <img src="/store/action_adopt.png" alt="Adopt a pet" className="action-bg-img" />
-            </div>
-            <div className="action-content">
-              <div className="action-icon-badge"><Heart size={24} /></div>
-              <h3>ADOPT A PET</h3>
-              <p>Find your new best friend.</p>
-              <div className="action-cta">Find Pets <ArrowRight size={16} className="arrow" /></div>
-            </div>
-          </Link>
-
-          {/* Secondary Cards Grid */}
-          <div className="secondary-action-grid">
-            <Link to="/foster" className="action-card secondary-card foster-theme">
-              <div className="action-bg-wrap">
-                <img src="/store/action_foster.png" alt="Foster a pet" className="action-bg-img" />
-              </div>
-              <div className="action-content">
-                <div className="action-icon-badge"><HomeIcon size={20} /></div>
-                <h3>FOSTER A PET</h3>
-                <p>Give a pet a safe place to stay.</p>
-                <div className="action-cta">Become a Foster <ArrowRight size={16} className="arrow" /></div>
-              </div>
-            </Link>
-
-            <Link to="/rescue" className="action-card secondary-card rescue-theme">
-              <div className="action-bg-wrap">
-                <img src="/store/action_rescue.png" alt="Rescue an animal" className="action-bg-img" />
-              </div>
-              <div className="action-content">
-                <div className="action-icon-badge"><LifeBuoy size={20} /></div>
-                <h3>RESCUE AN ANIMAL</h3>
-                <p>See an animal in need? Help them get rescued.</p>
-                <div className="action-cta">Report an Animal <ArrowRight size={16} className="arrow" /></div>
-              </div>
-            </Link>
-
-            <Link to="/lost-found" className="action-card secondary-card lost-theme">
-              <div className="action-bg-wrap">
-                <img src="/store/action_lost.png" alt="Find lost pet" className="action-bg-img" />
-              </div>
-              <div className="action-content">
-                <div className="action-icon-badge"><Search size={20} /></div>
-                <h3>FIND MY LOST PET</h3>
-                <p>Help bring your missing friend home.</p>
-                <div className="action-cta">Lost & Found <ArrowRight size={16} className="arrow" /></div>
-              </div>
-            </Link>
-
-            <Link to="/services" className="action-card secondary-card services-theme">
-              <div className="action-bg-wrap">
-                <img src="/store/action_services.png" alt="Pet services" className="action-bg-img" />
-              </div>
-              <div className="action-content">
-                <div className="action-icon-badge"><Stethoscope size={20} /></div>
-                <h3>FIND PET SERVICES</h3>
-                <p>Everything your pet needs, nearby.</p>
-                <div className="action-cta">Explore Services <ArrowRight size={16} className="arrow" /></div>
-              </div>
-            </Link>
           </div>
         </div>
       </section>
@@ -725,90 +639,6 @@ function Home() {
         </div>
       </section>
 
-      {/* 4. Shop by Category */}
-      <section className="section-container">
-        <div className="section-title">
-          <span className="arrow-left">⇶</span>
-          <h3>SHOP BY CATEGORY</h3>
-          <span className="arrow-right">⇇</span>
-        </div>
-
-        <div className="category-grid">
-          {categories.map((cat) => (
-            <div key={cat.id} className="category-card">
-              <div className="arch-background" style={{ backgroundColor: cat.archBg }}>
-                <img src={cat.img} alt={cat.title} className="category-img" />
-                <div className="paw-badge">🐾</div>
-              </div>
-              <h4>{cat.title}</h4>
-              <Link to="/shop" className="explore-link">Shop Category ➔</Link>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. Popular Products */}
-      <section className="section-container">
-        <div className="section-title">
-          <span className="arrow-left">⇶</span>
-          <h3>POPULAR PRODUCTS</h3>
-          <span className="arrow-right">⇇</span>
-        </div>
-
-        <div className="products-grid">
-          {products.map((prod) => (
-            <div key={prod.id} className="product-card">
-              <div className="product-img-box">
-                <img src={prod.img} alt={prod.name} className="product-img" />
-              </div>
-              <h4 className="product-title">{prod.name}</h4>
-              <div className="rating-row">
-                <div className="stars">
-                  {[...Array(prod.rating)].map((_, i) => (
-                    <Star key={i} size={14} fill="#f59e0b" color="#f59e0b" />
-                  ))}
-                </div>
-                <span className="review-count">({prod.reviews})</span>
-              </div>
-              <div className="product-bottom">
-                <span className="price">{prod.price}</span>
-                <button className="add-cart-btn" aria-label="Add to cart">
-                  <ShoppingCart size={16} />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 6. Customer Favorites */}
-      <section className="section-container">
-        <div className="section-title">
-          <span className="arrow-left">⇶</span>
-          <h3>CUSTOMER FAVORITES</h3>
-          <span className="arrow-right">⇇</span>
-        </div>
-
-        <div className="favorites-grid">
-          {customerFavorites.map((pet) => (
-            <div key={pet.id} className="favorite-card">
-              <div className="fav-img-box" style={{ backgroundColor: pet.bg }}>
-                <img src={pet.img} alt={pet.name} className="fav-img" />
-              </div>
-              <div className="fav-info">
-                <h4>{pet.name}</h4>
-                <p>{pet.breed}</p>
-                <div className="stars">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} fill="#f59e0b" color="#f59e0b" />
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* 7. Trust Banners */}
       <section className="trust-section">
         <div className="trust-cards-grid">
@@ -925,6 +755,11 @@ function Home() {
           </div>
         </div>
       </footer>
+      {/* AI Pet Name Generator Modal */}
+      <PetNameGeneratorModal
+        isOpen={isNameGenOpen}
+        onClose={() => setIsNameGenOpen(false)}
+      />
     </div>
   );
 }
