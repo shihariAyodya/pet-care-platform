@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   Search,
   Phone,
@@ -84,7 +84,8 @@ function Training() {
   const { currentUser, isAuthenticated } = useAuth();
 
   // Search & Filter
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchParams] = useSearchParams();
+const [searchTerm, setSearchTerm] = useState(searchParams.get("q") || "");
   const [cityFilter, setCityFilter] = useState("All");
   const [programFilter, setProgramFilter] = useState("All");
   const [homeOnly, setHomeOnly] = useState(false);

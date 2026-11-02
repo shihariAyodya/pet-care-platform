@@ -1,7 +1,5 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   Search,
   Phone,
@@ -13,9 +11,8 @@ import {
   CheckCircle2,
   X,
   Check,
-  ShieldCheck,
-  Sparkles,
-  Navigation
+  Siren,
+  Sparkles
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { useAuth } from "../context/AuthContext";
@@ -24,71 +21,57 @@ import "../styles/PetTransport.css";
 const transportList = [
   {
     id: 1,
-    name: "PetTaxi Colombo & Suburbs",
-    driver: "Pradeep Wickramasinghe",
+    name: "PetRide Colombo",
+    driver: "Nuwan Karunaratne",
     location: "Colombo",
-    address: "Coverage: Colombo, Dehiwala, Mount Lavinia, Battaramulla",
-    phone: "077-555-1290",
-    hours: "24/7 Emergency & Scheduled",
+    coverage: "Colombo & suburbs, airport transfers",
+    phone: "077-901-3345",
+    hours: "Every day, 6am–10pm",
     rating: 4.9,
-    reviews: 94,
-    verified: true,
-    acVehicle: true,
-    priceFrom: 1500,
-    vehicleType: "Air-Conditioned Pet Van & Cabs",
-    services: ["Vet Visits", "Airport Transfers", "Relocation", "Inter-City Trips"],
-    features: ["Crate / Carrier Provided", "Safety Harnesses", "Live GPS Sharing"]
+    reviews: 112,
+    vehicle: "AC Pet Van",
+    emergency: false,
+    baseFare: 1500,
+    perKm: 120,
+    petSizes: ["Small", "Medium", "Large"],
+    trips: ["Vet Visits", "Airport Transfer", "Grooming Drop-off", "Home Relocation"],
+    amenities: ["Air conditioned", "Crates provided", "Live GPS tracking"]
   },
   {
     id: 2,
-    name: "SafeRide Pet Ambulance & Transit",
-    driver: "Kavinda Jayawardena",
+    name: "Paws Ambulance 24/7",
+    driver: "Kavinda Mendis",
     location: "Nugegoda",
-    address: "Coverage: Nugegoda, Kottawa, Maharagama, Homagama",
-    phone: "071-889-4422",
-    hours: "24/7 Emergency Transport",
-    rating: 5.0,
-    reviews: 68,
-    verified: true,
-    acVehicle: true,
-    priceFrom: 2000,
-    vehicleType: "Emergency Pet Ambulance",
-    services: ["Emergency Vet Transport", "Stretcher Service", "Oxygen Equipped"],
-    features: ["Oxygen Onboard", "Trained Pet First-Aider", "Vet Pre-Alert"]
+    coverage: "Western Province, emergency runs anytime",
+    phone: "070-224-8811",
+    hours: "24 hours, 7 days",
+    rating: 4.8,
+    reviews: 64,
+    vehicle: "Pet Ambulance",
+    emergency: true,
+    baseFare: 3000,
+    perKm: 180,
+    petSizes: ["Small", "Medium", "Large"],
+    trips: ["Emergency Vet Run", "Vet Visits", "Post-surgery Pickup"],
+    amenities: ["Stretcher & oxygen", "Trained pet first-aider", "Air conditioned"]
   },
   {
     id: 3,
-    name: "Central Highlands Pet Movers",
-    driver: "Nuwan Bandara",
+    name: "Island Pet Movers",
+    driver: "Chathura Weerasinghe",
     location: "Kandy",
-    address: "Coverage: Kandy, Matale, Peradeniya & Island-Wide",
-    phone: "081-445-6677",
-    hours: "Mon–Sun, 6am–10pm",
-    rating: 4.8,
-    reviews: 47,
-    verified: true,
-    acVehicle: true,
-    priceFrom: 2500,
-    vehicleType: "Spacious SUV",
-    services: ["Island-Wide Relocation", "Vet Appointments", "Boarding Pick & Drop"],
-    features: ["Hydration Stops", "Sanitized Interior", "Large Dog Friendly"]
-  },
-  {
-    id: 4,
-    name: "Southern Coastal Pet Express",
-    driver: "Suranga Silva",
-    location: "Galle",
-    address: "Coverage: Galle, Matara, Hikkaduwa, Bentota",
-    phone: "091-778-3344",
-    hours: "Every day, 7am–9pm",
-    rating: 4.8,
-    reviews: 35,
-    verified: true,
-    acVehicle: true,
-    priceFrom: 1800,
-    vehicleType: "AC Hatchback / Van",
-    services: ["Local Rides", "Express to Colombo Vets", "Beach / Day-out Transit"],
-    features: ["Water & Treats", "Seat Protection", "Calm Driving Guarantee"]
+    coverage: "Inter-city trips across Sri Lanka",
+    phone: "081-223-5590",
+    hours: "Mon–Sat, 7am–7pm",
+    rating: 4.7,
+    reviews: 41,
+    vehicle: "Pet Taxi (Car)",
+    emergency: false,
+    baseFare: 1000,
+    perKm: 95,
+    petSizes: ["Small", "Medium"],
+    trips: ["Inter-city Travel", "Vet Visits", "Boarding Drop-off"],
+    amenities: ["Seat covers & harness", "Water & rest stops", "Owner can ride along"]
   }
 ];
 
@@ -97,14 +80,21 @@ const formatLKR = (n) => `LKR ${n.toLocaleString("en-LK")}`;
 const getInitials = (name) =>
   name.split(" ").filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase();
 
+const today = () => new Date().toISOString().split("T")[0];
+
 function PetTransport() {
-  const { language, toggleLanguage } = useLanguage();
-  const { currentUser } = useAuth();
+  const { language, toggleLanguage, t } = useLanguage();
+  const { currentUser, isAuthenticated } = useAuth();
 
-  const [searchTerm, setSearchTerm] = useState("");
+  // Search & Filter
+  const [searchParams] = useSearchParams();
+const [searchTerm, setSearchTerm] = useState(searchParams.get("q") || "");
   const [cityFilter, setCityFilter] = useState("All");
+  const [tripFilter, setTripFilter] = useState("All");
+  const [emergencyOnly, setEmergencyOnly] = useState(false);
 
-  const [bookingRide, setBookingRide] = useState(null);
+  // Booking Modal
+  const [bookingService, setBookingService] = useState(null);
   const [bookingForm, setBookingForm] = useState({});
   const [bookingSuccess, setBookingSuccess] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -114,293 +104,378 @@ function PetTransport() {
     setTimeout(() => setToastMessage(""), 2500);
   };
 
-  const cities = ["All", ...new Set(transportList.map((t) => t.location))];
+  const cities = ["All", ...new Set(transportList.map((s) => s.location))];
+  const tripTypes = ["All", ...new Set(transportList.flatMap((s) => s.trips))];
 
-  const filteredTransports = useMemo(() => {
+  const filteredServices = useMemo(() => {
     const search = searchTerm.toLowerCase();
-    return transportList.filter((item) => {
-      const matchSearch =
-        item.name.toLowerCase().includes(search) ||
-        item.driver.toLowerCase().includes(search) ||
-        item.address.toLowerCase().includes(search) ||
-        item.services.some((srv) => srv.toLowerCase().includes(search));
-      const matchCity = cityFilter === "All" || item.location === cityFilter;
-      return matchSearch && matchCity;
+    return transportList.filter((s) => {
+      const matchesSearch =
+        s.name.toLowerCase().includes(search) ||
+        s.driver.toLowerCase().includes(search) ||
+        s.location.toLowerCase().includes(search) ||
+        s.vehicle.toLowerCase().includes(search) ||
+        s.trips.some((tr) => tr.toLowerCase().includes(search));
+      const matchesCity = cityFilter === "All" || s.location === cityFilter;
+      const matchesTrip = tripFilter === "All" || s.trips.includes(tripFilter);
+      const matchesEmergency = !emergencyOnly || s.emergency;
+      return matchesSearch && matchesCity && matchesTrip && matchesEmergency;
     });
-  }, [searchTerm, cityFilter]);
+  }, [searchTerm, cityFilter, tripFilter, emergencyOnly]);
 
-  const openBooking = (ride) => {
-    setBookingRide(ride);
+  const resetFilters = () => {
+    setSearchTerm("");
+    setCityFilter("All");
+    setTripFilter("All");
+    setEmergencyOnly(false);
+  };
+
+  const handleOpenBooking = (service) => {
+    setBookingService(service);
     setBookingSuccess(false);
     setBookingForm({
-      petType: "Dog",
-      service: ride.services[0] || "Vet Visits",
-      pickupAddress: "",
-      dropAddress: "",
-      rideDate: "",
-      rideTime: "Morning",
-      ownerName: currentUser?.name || "",
+      petName: currentUser?.myPets?.[0]?.name || "",
+      petType: currentUser?.myPets?.[0]?.type || "Dog",
+      petSize: service.petSizes[0],
+      tripType: tripFilter !== "All" && service.trips.includes(tripFilter)
+        ? tripFilter
+        : service.trips[0],
+      pickup: "",
+      dropoff: "",
+      date: today(),
+      time: "",
+      returnTrip: false,
+      ownerRiding: false,
+      ownerName: currentUser?.fullName || "",
       phone: currentUser?.phone || "",
       notes: ""
     });
   };
 
-  const closeBooking = () => {
-    setBookingRide(null);
-    setBookingSuccess(false);
-  };
-
-  const updateForm = (field, val) => {
-    setBookingForm((prev) => ({ ...prev, [field]: val }));
-  };
+  const updateForm = (field, value) => setBookingForm((f) => ({ ...f, [field]: value }));
 
   const handleBookingSubmit = (e) => {
     e.preventDefault();
     setBookingSuccess(true);
-    showToast(`Ride request sent to ${bookingRide.name}!`);
     setTimeout(() => {
-      closeBooking();
-    }, 2000);
+      const name = bookingService.name;
+      setBookingService(null);
+      setBookingSuccess(false);
+      showToast(`Ride booked with ${name}! The driver will call to confirm.`);
+    }, 2400);
   };
 
   return (
     <div className="transport-page">
       {/* Toast */}
-      {toastMessage && <div className="transport-toast">{toastMessage}</div>}
+      {toastMessage && (
+        <div className="trans-toast">
+          <Check size={18} color="#86efac" /> {toastMessage}
+        </div>
+      )}
 
-      <Navbar />
+      {/* Navbar */}
+      <nav className="navbar">
+        <Link to="/" className="brand-logo">
+          <img src="/store/logo.png" alt="Site Logo" className="site-logo" />
+        </Link>
+        <div className="nav-links">
+          <Link to="/browse">{t("nav.adopt")}</Link>
+          <Link to="/shop">Shop</Link>
+          <Link to="/lost-found">{t("nav.lostFound")}</Link>
+          <Link to="/vets">{t("nav.vetDirectory")}</Link>
+          <Link to="/grooming">Grooming</Link>
+          <Link to="/training">Training</Link>
+          <Link to="/sitting">Pet Sitting</Link>
+          <Link to="/transport" className="active">Transport</Link>
+          <Link to="/smart-match">Smart Match</Link>
+          {isAuthenticated ? (
+            <Link to="/profile">👤 {currentUser?.fullName?.split(" ")[0] || "Profile"}</Link>
+          ) : (
+            <Link to="/login">{t("nav.login")}</Link>
+          )}
+          <button className="lang-toggle" onClick={toggleLanguage}>
+            {language === "en" ? "සිං" : "EN"}
+          </button>
+        </div>
+      </nav>
 
-      {/* Hero */}
-      <section className="transport-hero">
-        <div className="transport-hero-text">
-          <span className="hero-pill"><Sparkles size={14} /> Safe Pet Journeys</span>
-          <h1>Comfortable & Safe <span>Pet Transport</span></h1>
-          <p>
-            From scheduled vet checkups to island-wide relocations and emergency ambulance rides,
-            trust caring drivers with pet-ready, sanitized vehicles.
-          </p>
+      {/* Header */}
+      <section className="trans-header">
+        <div className="trans-header-pill">
+          <Car size={14} /> Pet-Friendly Rides Across Sri Lanka
+        </div>
+        <h2>Pet Transport Near You</h2>
+        <p>Safe journeys for pets. Vet visits, airport transfers, relocations and emergency runs.</p>
+      </section>
+
+      {/* Emergency Spotlight */}
+      <section className="trans-spotlight-section">
+        <div className="trans-spotlight-card">
+          <div className="trans-spotlight-icon">
+            <Siren size={26} />
+          </div>
+          <div className="trans-spotlight-content">
+            <div className="trans-spotlight-badge">
+              <Sparkles size={11} /> 24/7 PET AMBULANCE
+            </div>
+            <h3>Pet emergency? Get to the vet fast</h3>
+            <p>Pet ambulances with first-aid trained staff, ready day and night.</p>
+          </div>
+          <button
+            className="trans-spotlight-btn"
+            onClick={() => setEmergencyOnly(true)}
+          >
+            Show Emergency Rides ➔
+          </button>
         </div>
       </section>
 
       {/* Search & Filters */}
-      <section className="transport-search-section">
-        <div className="transport-search-bar">
-          <Search size={20} className="search-icon" />
-          <input
-            type="text"
-            placeholder="Search by driver, service, or coverage area..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          {searchTerm && (
-            <button className="clear-btn" onClick={() => setSearchTerm("")}>
-              <X size={16} />
-            </button>
-          )}
-        </div>
+      <div className="trans-filters-wrap">
+        <div className="trans-filters">
+          <div className="trans-search">
+            <Search size={18} className="trans-search-icon" />
+            <input
+              type="text"
+              placeholder="Search by service, vehicle, trip type or city..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
 
-        <div className="transport-filter-row">
-          <div className="filter-group">
-            <label>Region / Hub</label>
+          <div className="trans-filter-controls">
             <select value={cityFilter} onChange={(e) => setCityFilter(e.target.value)}>
-              {cities.map((c) => (
-                <option key={c} value={c}>{c}</option>
+              {cities.map((city) => (
+                <option key={city} value={city}>{city === "All" ? "All Locations" : city}</option>
               ))}
             </select>
+
+            <select value={tripFilter} onChange={(e) => setTripFilter(e.target.value)}>
+              {tripTypes.map((tr) => (
+                <option key={tr} value={tr}>{tr === "All" ? "All Trip Types" : tr}</option>
+              ))}
+            </select>
+
+            <label className={`trans-toggle ${emergencyOnly ? "on" : ""}`}>
+              <input
+                type="checkbox"
+                checked={emergencyOnly}
+                onChange={(e) => setEmergencyOnly(e.target.checked)}
+              />
+              <span>🚨 24/7 Emergency</span>
+            </label>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* Transport Directory Grid */}
-      <section className="transport-list-section">
-        <div className="section-header">
-          <h2>Available Pet Transporters & Taxis ({filteredTransports.length})</h2>
-          <p>Direct bookings with upfront rates</p>
-        </div>
+      {/* Directory Listing */}
+      <section className="trans-results">
+        <p className="trans-results-count">
+          Found {filteredServices.length} pet transport services
+        </p>
 
-        {filteredTransports.length === 0 ? (
-          <div className="transport-empty">
-            <p>No pet transport services match your search.</p>
-            <button
-              onClick={() => {
-                setSearchTerm("");
-                setCityFilter("All");
-              }}
-            >
-              Reset Filters
-            </button>
-          </div>
-        ) : (
-          <div className="transport-grid">
-            {filteredTransports.map((ride) => (
-              <div key={ride.id} className="transport-card">
-                <div className="transport-card-header">
-                  <div className="transport-avatar">
-                    {getInitials(ride.driver)}
-                  </div>
-                  <div className="transport-title-box">
-                    <div className="transport-name-row">
-                      <h3>{ride.name}</h3>
-                      {ride.verified && (
-                        <span className="verified-badge" title="Verified Driver">
-                          <ShieldCheck size={14} /> Verified
-                        </span>
-                      )}
+        <div className="trans-grid">
+          {filteredServices.map((s) => (
+            <div key={s.id} className="trans-card">
+              <div className="trans-card-top">
+                <div className="trans-avatar">{getInitials(s.name)}</div>
+                <div>
+                  <h3>{s.name}</h3>
+                  <div className="trans-driver">{s.vehicle} • {s.driver}</div>
+                  <div className="trans-rating">
+                    <div className="trans-stars">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={12} fill="#f59e0b" color="#f59e0b" />
+                      ))}
                     </div>
-                    <span className="driver-person">Driver: {ride.driver} • {ride.vehicleType}</span>
+                    <span>{s.rating} ({s.reviews})</span>
                   </div>
-                </div>
-
-                <div className="transport-rating-row">
-                  <div className="stars">
-                    <Star size={16} fill="#f59e0b" color="#f59e0b" />
-                    <strong>{ride.rating.toFixed(1)}</strong>
-                    <span className="reviews">({ride.reviews} reviews)</span>
-                  </div>
-                  <span className="price-tag">From <strong>{formatLKR(ride.priceFrom)}</strong></span>
-                </div>
-
-                <div className="transport-info-rows">
-                  <div className="info-item">
-                    <MapPin size={16} />
-                    <span>{ride.address}</span>
-                  </div>
-                  <div className="info-item">
-                    <Clock size={16} />
-                    <span>{ride.hours}</span>
-                  </div>
-                  <div className="info-item">
-                    <Phone size={16} />
-                    <a href={`tel:${ride.phone}`}>{ride.phone}</a>
-                  </div>
-                </div>
-
-                <div className="transport-tags">
-                  {ride.services.map((srv) => (
-                    <span key={srv} className="tag-service">{srv}</span>
-                  ))}
-                </div>
-
-                <div className="transport-highlights">
-                  {ride.features.map((f) => (
-                    <span key={f} className="tag-feature">✓ {f}</span>
-                  ))}
-                </div>
-
-                <div className="transport-card-actions">
-                  <button className="book-btn" onClick={() => openBooking(ride)}>
-                    <Calendar size={16} /> Book Ride
-                  </button>
-                  <a href={`tel:${ride.phone}`} className="call-btn" title="Call Driver">
-                    <Phone size={16} />
-                  </a>
                 </div>
               </div>
-            ))}
+
+              <div className="trans-services">
+                {s.trips.map((tr) => (
+                  <span key={tr} className="trans-service-tag">{tr}</span>
+                ))}
+              </div>
+
+              <div className="trans-details">
+                <div>
+                  <strong>Fare:</strong> {formatLKR(s.baseFare)} base + {formatLKR(s.perKm)} / km
+                </div>
+                <div><strong>Pet sizes:</strong> {s.petSizes.join(", ")}</div>
+                <div><strong>Includes:</strong> {s.amenities.join(" • ")}</div>
+                <div className="trans-detail-row">
+                  <MapPin size={14} color="#6b7280" /> {s.coverage}
+                </div>
+                <div className="trans-detail-row">
+                  <Clock size={14} color="#6b7280" /> {s.hours}
+                </div>
+                {s.emergency && (
+                  <span className="trans-emergency-tag">🚨 24/7 Emergency Pet Ambulance</span>
+                )}
+              </div>
+
+              <div className="trans-actions">
+                <button className="trans-book-btn" onClick={() => handleOpenBooking(s)}>
+                  <Calendar size={16} /> Book Ride
+                </button>
+                <a href={`tel:${s.phone}`} className="trans-call-btn" title="Call Driver">
+                  <Phone size={16} /> Call
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {filteredServices.length === 0 && (
+          <div className="trans-empty">
+            <p>No transport services match your search. Try a different city or trip type.</p>
+            <button onClick={resetFilters}>Reset Filters</button>
           </div>
         )}
       </section>
 
       {/* Booking Modal */}
-      {bookingRide && (
-        <div className="transport-modal-overlay" onClick={closeBooking}>
-          <div className="transport-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={closeBooking}>
-              <X size={20} />
+      {bookingService && (
+        <div className="trans-modal-overlay" onClick={() => setBookingService(null)}>
+          <div className="trans-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="trans-modal-close" onClick={() => setBookingService(null)} aria-label="Close">
+              <X size={18} />
             </button>
 
             {bookingSuccess ? (
-              <div className="modal-success">
-                <CheckCircle2 size={54} color="#10b981" />
-                <h3>Ride Request Received!</h3>
+              <div className="trans-success">
+                <CheckCircle2 size={56} color="#16a34a" />
+                <h3>Pet Ride Confirmed!</h3>
                 <p>
-                  <strong>{bookingRide.name}</strong> will call you at{" "}
-                  <strong>{bookingForm.phone}</strong> shortly to confirm pickup coordinates.
+                  <strong>{bookingService.name}</strong> will pick up <strong>{bookingForm.petName}</strong> from{" "}
+                  <strong>{bookingForm.pickup}</strong> on <strong>{bookingForm.date}</strong> at{" "}
+                  <strong>{bookingForm.time}</strong>. The driver will call before arriving.
                 </p>
               </div>
             ) : (
               <div>
-                <h2>Book Pet Transport</h2>
-                <p className="modal-subtitle">
-                  with <strong>{bookingRide.name}</strong> ({rideDriver(bookingRide)})
-                </p>
+                <div className="trans-modal-head">
+                  <div className="trans-avatar small">{getInitials(bookingService.name)}</div>
+                  <div>
+                    <h3>Book a Ride with {bookingService.name}</h3>
+                    <span>{bookingService.vehicle} • {bookingService.location}</span>
+                  </div>
+                </div>
 
-                <form onSubmit={handleBookingSubmit} className="transport-form">
-                  <div className="form-row">
+                <form onSubmit={handleBookingSubmit} className="trans-form">
+                  <div className="trans-form-row">
+                    <div>
+                      <label>Pet's Name *</label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Max"
+                        value={bookingForm.petName}
+                        onChange={(e) => updateForm("petName", e.target.value)}
+                      />
+                    </div>
                     <div>
                       <label>Pet Type</label>
-                      <select
-                        value={bookingForm.petType}
-                        onChange={(e) => updateForm("petType", e.target.value)}
-                      >
+                      <select value={bookingForm.petType} onChange={(e) => updateForm("petType", e.target.value)}>
                         <option value="Dog">Dog</option>
                         <option value="Cat">Cat</option>
                         <option value="Bird">Bird</option>
-                        <option value="Other">Other Pet</option>
+                        <option value="Rabbit">Rabbit</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="trans-form-row">
+                    <div>
+                      <label>Pet Size</label>
+                      <select value={bookingForm.petSize} onChange={(e) => updateForm("petSize", e.target.value)}>
+                        {bookingService.petSizes.map((sz) => (
+                          <option key={sz} value={sz}>
+                            {sz} {sz === "Small" ? "(under 10kg)" : sz === "Medium" ? "(10–25kg)" : "(over 25kg)"}
+                          </option>
+                        ))}
                       </select>
                     </div>
                     <div>
-                      <label>Service Type</label>
-                      <select
-                        value={bookingForm.service}
-                        onChange={(e) => updateForm("service", e.target.value)}
-                      >
-                        {bookingRide.services.map((s) => (
-                          <option key={s} value={s}>{s}</option>
+                      <label>Trip Type *</label>
+                      <select value={bookingForm.tripType} onChange={(e) => updateForm("tripType", e.target.value)}>
+                        {bookingService.trips.map((tr) => (
+                          <option key={tr} value={tr}>{tr}</option>
                         ))}
                       </select>
                     </div>
                   </div>
 
                   <div>
-                    <label>Pickup Location *</label>
+                    <label>Pickup Address *</label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. 15 Colombo Road, Nugegoda"
-                      value={bookingForm.pickupAddress}
-                      onChange={(e) => updateForm("pickupAddress", e.target.value)}
+                      placeholder="e.g. 12 Galle Road, Colombo 03"
+                      value={bookingForm.pickup}
+                      onChange={(e) => updateForm("pickup", e.target.value)}
                     />
                   </div>
 
                   <div>
-                    <label>Destination Location *</label>
+                    <label>Drop-off Address *</label>
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Happy Paws Vet Clinic, Colombo 05"
-                      value={bookingForm.dropAddress}
-                      onChange={(e) => updateForm("dropAddress", e.target.value)}
+                      placeholder="e.g. PawCare Animal Clinic, Nugegoda"
+                      value={bookingForm.dropoff}
+                      onChange={(e) => updateForm("dropoff", e.target.value)}
                     />
                   </div>
 
-                  <div className="form-row">
+                  <div className="trans-form-row">
                     <div>
                       <label>Pickup Date *</label>
                       <input
                         type="date"
                         required
-                        value={bookingForm.rideDate}
-                        onChange={(e) => updateForm("rideDate", e.target.value)}
+                        min={today()}
+                        value={bookingForm.date}
+                        onChange={(e) => updateForm("date", e.target.value)}
                       />
                     </div>
                     <div>
-                      <label>Preferred Time Slot</label>
-                      <select
-                        value={bookingForm.rideTime}
-                        onChange={(e) => updateForm("rideTime", e.target.value)}
-                      >
-                        <option value="Morning (7am - 11am)">Morning (7am - 11am)</option>
-                        <option value="Afternoon (12pm - 4pm)">Afternoon (12pm - 4pm)</option>
-                        <option value="Evening (5pm - 8pm)">Evening (5pm - 8pm)</option>
-                        <option value="ASAP Emergency">ASAP Emergency</option>
-                      </select>
+                      <label>Pickup Time *</label>
+                      <input
+                        type="time"
+                        required
+                        value={bookingForm.time}
+                        onChange={(e) => updateForm("time", e.target.value)}
+                      />
                     </div>
                   </div>
 
-                  <div className="form-row">
+                  <div className="trans-checks">
+                    <label className="trans-check">
+                      <input
+                        type="checkbox"
+                        checked={bookingForm.returnTrip}
+                        onChange={(e) => updateForm("returnTrip", e.target.checked)}
+                      />
+                      <span>I need a return trip</span>
+                    </label>
+                    <label className="trans-check">
+                      <input
+                        type="checkbox"
+                        checked={bookingForm.ownerRiding}
+                        onChange={(e) => updateForm("ownerRiding", e.target.checked)}
+                      />
+                      <span>I'll ride along with my pet</span>
+                    </label>
+                  </div>
+
+                  <div className="trans-form-row">
                     <div>
-                      <label>Owner Name *</label>
+                      <label>Parent / Owner Name *</label>
                       <input
                         type="text"
                         required
@@ -421,21 +496,23 @@ function PetTransport() {
                   </div>
 
                   <div>
-                    <label>Notes / Crate Requirements</label>
+                    <label>Notes for the Driver</label>
                     <textarea
                       rows={2}
-                      placeholder="e.g. Need large crate provided, anxious pet, one person travelling with pet..."
+                      placeholder="e.g. Gets car sick, needs a crate, injured back leg..."
                       value={bookingForm.notes}
                       onChange={(e) => updateForm("notes", e.target.value)}
                     />
                   </div>
 
-                  <div className="price-note">
-                    Base Fare starts at <strong>{formatLKR(bookingRide.priceFrom)}</strong>. Final fare depends on travel distance.
+                  <div className="trans-price-note">
+                    Fare is <strong>{formatLKR(bookingService.baseFare)}</strong> base +{" "}
+                    <strong>{formatLKR(bookingService.perKm)} / km</strong>
+                    {bookingForm.returnTrip && ", charged both ways for a return trip"}. The driver confirms the final fare by phone.
                   </div>
 
-                  <button type="submit" className="confirm-btn">
-                    <Check size={18} /> Confirm Ride Request
+                  <button type="submit" className="trans-submit-btn">
+                    <Calendar size={18} /> Confirm Ride Booking
                   </button>
                 </form>
               </div>
@@ -443,11 +520,8 @@ function PetTransport() {
           </div>
         </div>
       )}
-    <Footer />
     </div>
   );
 }
-
-const rideDriver = (ride) => ride?.driver || "Driver";
 
 export default PetTransport;
