@@ -55,11 +55,7 @@ export default function Profile() {
   if (!isAuthenticated || !currentUser) {
     return (
       <div className="auth-page">
-        <header className="auth-header">
-          <Link to="/" className="brand-logo">
-            <img src="/store/logo.png" alt="Pet Care Platform Logo" />
-          </Link>
-        </header>
+        <Navbar />
         <main className="auth-main">
           <div className="auth-card-container">
             <div className="auth-card" style={{ textAlign: "center" }}>
@@ -145,6 +141,9 @@ export default function Profile() {
             </div>
 
             <div className="profile-hero-actions">
+              <Link to="/community" className="profile-action-btn secondary" style={{ textDecoration: "none" }}>
+                <PawPrint size={16} /> Community Moments
+              </Link>
               <button
                 className={`profile-action-btn ${isEditing ? "primary" : "secondary"}`}
                 onClick={() => {

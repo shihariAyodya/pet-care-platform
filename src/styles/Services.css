@@ -6,57 +6,7 @@
   padding-bottom: 4rem;
 }
 
-/* Navbar (scoped so it can't clash with other pages) */
-.services-page .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 3rem;
-  background-color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
 
-.services-page .brand-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.services-page .site-logo {
-  height: 45px;
-  width: auto;
-  object-fit: contain;
-}
-
-.services-page .nav-links a {
-  margin-left: 1.5rem;
-  text-decoration: none;
-  color: #5a4634;
-  font-weight: 500;
-}
-
-.services-page .nav-links a:hover {
-  color: #6f4e37;
-}
-
-.services-page .nav-links a.active {
-  color: var(--green-dark, #1d4633);
-  font-weight: 700;
-}
-
-.services-page .lang-toggle {
-  background-color: #fffaf3;
-  border: 1px solid #e0d3bd;
-  color: #6f4e37;
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 0.85rem;
-  cursor: pointer;
-  margin-left: 1.5rem;
-}
 
 /* Header */
 .svc-header {
@@ -381,14 +331,7 @@
 }
 
 @media (max-width: 640px) {
-  .services-page .navbar {
-    padding: 1rem 1.2rem;
-  }
-
-  .services-page .nav-links a,
-  .services-page .lang-toggle {
-    margin-left: 0.9rem;
-  }
+  
 
   .svc-section {
     padding: 0 1rem;

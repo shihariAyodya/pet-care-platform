@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { useAuth } from "../context/AuthContext";
+import Navbar from "../components/Navbar";
 import "../styles/Services.css";
 
 // The 6 service categories. "count" matches how many providers each page lists.
@@ -129,26 +130,7 @@ function Services() {
   return (
     <div className="services-page">
       {/* Navbar */}
-      <nav className="navbar">
-        <Link to="/" className="brand-logo">
-          <img src="/store/logo.png" alt="Site Logo" className="site-logo" />
-        </Link>
-        <div className="nav-links">
-          <Link to="/browse">{t("nav.adopt")}</Link>
-          <Link to="/shop">Shop</Link>
-          <Link to="/lost-found">{t("nav.lostFound")}</Link>
-          <Link to="/services" className="active">Services</Link>
-          <Link to="/smart-match">Smart Match</Link>
-          {isAuthenticated ? (
-            <Link to="/profile">👤 {currentUser?.fullName?.split(" ")[0] || "Profile"}</Link>
-          ) : (
-            <Link to="/login">{t("nav.login")}</Link>
-          )}
-          <button className="lang-toggle" onClick={toggleLanguage}>
-            {language === "en" ? "සිං" : "EN"}
-          </button>
-        </div>
-      </nav>
+      <Navbar />
 
       {/* Header */}
       <section className="svc-header">
