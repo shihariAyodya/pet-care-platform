@@ -13,64 +13,7 @@
   min-height: 100vh;
 }
 
-/* Navbar */
-.browse-page .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 3.5rem;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
 
-.browse-page .brand-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.browse-page .site-logo {
-  height: 44px;
-  width: auto;
-  object-fit: contain;
-}
-
-.browse-page .nav-links {
-  display: flex;
-  align-items: center;
-  gap: 1.6rem;
-  flex-wrap: wrap;
-}
-
-.browse-page .nav-links a {
-  text-decoration: none;
-  color: #4b5563;
-  font-weight: 600;
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
-}
-
-.browse-page .nav-links a:hover {
-  color: var(--green-dark, #1d4633);
-}
-
-.browse-page .lang-toggle {
-  background-color: var(--green-light, #eaf4ee);
-  border: 1px solid #c7e3d1;
-  color: var(--green-dark, #1d4633);
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.browse-page .lang-toggle:hover {
-  background-color: #d8ece0;
-}
 
 /* Header & Banner */
 .browse-header {

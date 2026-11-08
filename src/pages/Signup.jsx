@@ -14,6 +14,7 @@ import {
   Heart
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
+import Navbar from "../components/Navbar";
 import "../styles/Auth.css";
 
 export default function Signup() {
@@ -85,15 +86,8 @@ export default function Signup() {
 
   return (
     <div className="auth-page">
-      {/* Top Header */}
-      <header className="auth-header">
-        <Link to="/" className="brand-logo">
-          <img src="/store/logo.png" alt="Pet Care Platform Logo" />
-        </Link>
-        <Link to="/" className="auth-back-link">
-          <ArrowLeft size={16} /> Back to Store
-        </Link>
-      </header>
+      {/* Top Navbar */}
+      <Navbar />
 
       {/* Main Form Section */}
       <main className="auth-main">

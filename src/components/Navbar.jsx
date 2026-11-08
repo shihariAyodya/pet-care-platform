@@ -1,10 +1,20 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { User } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Navbar.css";
 
 export default function Navbar() {
   const { currentUser, isAuthenticated } = useAuth();
+  const location = useLocation();
+
+  const isLostFoundActive =
+    location.pathname === "/lost-found" ||
+    location.pathname === "/found-pets" ||
+    location.pathname === "/report-lost" ||
+    location.pathname === "/report-found";
+
+  const isLoginActive =
+    location.pathname === "/login" || location.pathname === "/signup";
 
   return (
     <nav className="app-navbar">
@@ -13,47 +23,94 @@ export default function Navbar() {
       </Link>
 
       <div className="nav-links">
-        <NavLink to="/browse" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink
+          to="/browse"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
           Adopt
         </NavLink>
-        <NavLink to="/shop" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink
+          to="/shop"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
           Shop
         </NavLink>
-        <NavLink to="/lost-found" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink
+          to="/lost-found"
+          className={isLostFoundActive ? "active" : ""}
+        >
           Lost & Found
         </NavLink>
-        <NavLink to="/vets" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink
+          to="/community"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Community
+        </NavLink>
+        <NavLink
+          to="/services"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Services
+        </NavLink>
+        <NavLink
+          to="/vets"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
           Vet Directory
         </NavLink>
-        <NavLink to="/grooming" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink
+          to="/grooming"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
           Grooming
         </NavLink>
-        <NavLink to="/training" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink
+          to="/training"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
           Training
         </NavLink>
-        <NavLink to="/sitting" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink
+          to="/sitting"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
           Pet Sitting
         </NavLink>
-        <NavLink to="/transport" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink
+          to="/transport"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
           Transport
         </NavLink>
-        <NavLink to="/shops" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink
+          to="/shops"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
           Pet Shops
         </NavLink>
-        <NavLink to="/smart-match" className={({ isActive }) => (isActive ? "active" : "")}>
+        <NavLink
+          to="/smart-match"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
           Smart Match
         </NavLink>
 
         {isAuthenticated ? (
           <NavLink
             to="/profile"
-            className={({ isActive }) => (isActive ? "user-link active" : "user-link")}
+            className={({ isActive }) =>
+              isActive ? "user-link active" : "user-link"
+            }
           >
             <User size={16} />
             <span>{currentUser?.fullName?.split(" ")[0] || "Profile"}</span>
           </NavLink>
         ) : (
-          <NavLink to="/login" className={({ isActive }) => (isActive ? "active" : "")}>
+          <NavLink
+            to="/login"
+            className={isLoginActive ? "active" : ""}
+          >
             Login
           </NavLink>
         )}

@@ -100,6 +100,10 @@ function Home() {
               <Globe size={20} />
               <span>{language === "en" ? "EN" : "සිං"}</span>
             </button>
+            <Link to="/community" className="action-item" style={{ textDecoration: "none", color: "inherit" }} title="Petzy Community & Moments">
+              <Users size={20} />
+              <span>Community</span>
+            </Link>
             <Link to={isAuthenticated ? "/profile" : "/login"} className="action-item" style={{ textDecoration: "none", color: "inherit" }}>
               <User size={20} />
               <span>{isAuthenticated ? (currentUser?.fullName?.split(" ")[0] || "Profile") : "Account"}</span>
@@ -147,8 +151,8 @@ function Home() {
             </div>
           </div>
 
-          <Link to="/shop" className="shop-now-btn">
-            SHOP NOW <ArrowRight size={18} />
+          <Link to="/community" className="shop-now-btn" style={{ textTransform: "none" }}>
+            Petzy Social <ArrowRight size={18} />
           </Link>
         </div>
 

@@ -21,6 +21,9 @@ import PetSitting from "./pages/PetSitting";
 import PetTransport from "./pages/PetTransport";
 import PetShops from "./pages/PetShops";
 import Services from "./pages/Services";
+import Community from "./pages/Community";
+import CommunityPostDetail from "./pages/CommunityPostDetail";
+import CommunityUserProfile from "./pages/CommunityUserProfile";
 
 function App() {
   return (
@@ -51,6 +54,17 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/profile" element={<Profile />} />
+
+              {/* Petzy Community & Moments Routes (Merged Boop Social Platform) */}
+              <Route path="/community" element={<Community />} />
+              <Route path="/community/post/:postId" element={<CommunityPostDetail />} />
+              <Route path="/community/u/:username" element={<CommunityUserProfile />} />
+
+              {/* Aliases and redirects to maintain compatibility with legacy Boop paths */}
+              <Route path="/boop" element={<Navigate to="/community" replace />} />
+              <Route path="/feed" element={<Navigate to="/community" replace />} />
+              <Route path="/post/:postId" element={<CommunityPostDetail />} />
+              <Route path="/u/:username" element={<CommunityUserProfile />} />
 
               {/* Catch-all redirect to Home */}
               <Route path="*" element={<Navigate to="/" replace />} />
