@@ -15,7 +15,6 @@ import {
   ArrowRight,
   Stethoscope,
   Tag,
-  Globe,
   Flame,
   MapPin,
   Dog,
@@ -38,7 +37,6 @@ import {
   Sparkles,
   Wand2
 } from "lucide-react";
-import { useLanguage } from "../context/LanguageContext";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
 import CartDrawer from "../components/CartDrawer";
@@ -48,7 +46,6 @@ import "../styles/Home.css";
 
 
 function Home() {
-  const { language, toggleLanguage } = useLanguage();
   const { currentUser, isAuthenticated } = useAuth();
   const { totalCartCount, setIsCartOpen, wishlist } = useCart();
   const [selectedCategory] = useState("All Categories");
@@ -96,10 +93,6 @@ function Home() {
 
           {/* User & Cart Actions */}
           <div className="header-actions">
-            <button className="action-item" onClick={toggleLanguage} title="Switch Language">
-              <Globe size={20} />
-              <span>{language === "en" ? "EN" : "සිං"}</span>
-            </button>
             <Link to="/community" className="action-item" style={{ textDecoration: "none", color: "inherit" }} title="Petzy Community & Moments">
               <Users size={20} />
               <span>Community</span>

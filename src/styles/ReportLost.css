@@ -62,3 +62,39 @@
 .submit-btn:hover {
   background: var(--primary-dark, #e05555);
 }
+
+
+.photo-upload input[type="file"] {
+  width: 100%;
+  margin-top: 0.4rem;
+  padding: 0.6rem;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.photo-upload input[type="file"]:hover {
+  border-color: var(--green-dark);
+  background: #f1f7f3;
+}
+
+.photo-upload input[type="file"]::file-selector-button {
+  background-color: var(--green-dark);
+  color: #ffffff;
+  border: none;
+  padding: 0.55rem 1.2rem;
+  margin-right: 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.photo-upload input[type="file"]::file-selector-button:hover {
+  background-color: var(--green-hover);
+}

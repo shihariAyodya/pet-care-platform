@@ -1,12 +1,9 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import { useState } from "react";
-import { useLanguage } from "../context/LanguageContext";
+import { Link } from "react-router-dom";
 import "../styles/ReportLost.css";
 import { Check } from "lucide-react";
 
 function ReportLost() {
-  const { t } = useLanguage();
   const [form, setForm] = useState({
     name: "",
     breed: "",
@@ -27,40 +24,39 @@ function ReportLost() {
     e.preventDefault();
     // Placeholder: In a real app, submit to backend
     console.log("Lost pet report submitted", form);
-    alert(t("reportLost.successMessage") || "Report submitted!");
+    alert("Report submitted!");
   };
 
   return (
     <div className="report-lost-page">
-      <Navbar />
-      <h2 className="page-title">{t("reportLost.title") || "Report a Lost Pet"}</h2>
-      <p className="page-subtitle">{t("reportLost.subtitle") || "Help us find your missing companion."}</p>
+      <Link to="/">← Back to Home</Link>
+      <h2 className="page-title">Report a Lost Pet</h2>
+      <p className="page-subtitle">Help us find your missing companion.</p>
       <form className="report-form" onSubmit={handleSubmit}>
         <label>
-          {t("reportLost.petName") || "Pet Name"}
+          Pet Name
           <input type="text" name="name" value={form.name} onChange={handleChange} required />
         </label>
         <label>
-          {t("reportLost.breed") || "Breed"}
+          Breed
           <input type="text" name="breed" value={form.breed} onChange={handleChange} required />
         </label>
         <label>
-          {t("reportLost.location") || "Last Seen Location"}
+          Last Seen Location
           <input type="text" name="location" value={form.location} onChange={handleChange} required />
         </label>
         <label>
-          {t("reportLost.description") || "Description"}
+          Description
           <textarea name="description" value={form.description} onChange={handleChange} required />
         </label>
         <label className="photo-upload">
-          {t("reportLost.photo") || "Photo (optional)"}
+          Photo (optional)
           <input type="file" name="photo" accept="image/*" onChange={handleChange} />
         </label>
         <button type="submit" className="submit-btn">
-          <Check size={18} /> {t("reportLost.submit") || "Submit Report"}
+          <Check size={18} /> Submit Report
         </button>
       </form>
-    <Footer />
     </div>
   );
 }
